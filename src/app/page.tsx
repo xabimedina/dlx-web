@@ -1,7 +1,6 @@
 "use client";
 
 import { Button, DlxParagraph } from "dlx-components";
-import Navbar from "@/components/navbar";
 import Image from "next/image";
 import { DlxNavbar } from "dlx-components"
 
