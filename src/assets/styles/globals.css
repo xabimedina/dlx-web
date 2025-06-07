@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-smoke: var(--smoke);
+  --color-smoke-foreground: var(--smoke-foreground);
+  --color-jet: var(--jet);
+  --color-jet-foreground: var(--jet-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-saffron: var(--saffron);
+  --color-saffron-foreground: var(--saffron-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-montserrat);
+  --font-kanit: var(--font-kanit);
+}
+
+:root {
+  --radius: 0.625rem;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --smoke: oklch(0.96 0.005 116.91);
+  --smoke-foreground: oklch(0.985 0 0);
+  --jet: oklch(0.34 0.003 117.03);
+  --jet-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --saffron: oklch(0.79 0.151 88.43);
+  --saffron-foreground: oklch(0.205 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+
+
+body {
+  background: var(--jet);
+  color: var(--jet);
+  font-family: var(--font-montserrat);
+}
