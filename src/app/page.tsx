@@ -3,11 +3,12 @@
 import { Button, DlxParagraph } from "dlx-components";
 import Navbar from "@/components/navbar";
 import Image from "next/image";
+import { DlxNavbar } from "dlx-components"
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <DlxNavbar type="smoke" />
       <div className="relative w-full h-screen pt-10">
         <Image
           src="/images/portada.jpg"
