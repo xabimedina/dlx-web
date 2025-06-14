@@ -1,32 +1,47 @@
-"use client";
+'use client';
+import { DlxNavbar, DlxFooter } from 'dlx-components';
+import { ProjectsHome } from '@/components/projects-sticky/project-sticky-home';
+import { AllProjects } from '@/components/projects-sticky/project-sticky-all';
+import { HomePortrait } from '@/components/pages/home/portrait';
+import { HomeServices } from '@/components/pages/home/services';
+import { ContactSection } from '@/components/pages/home/contact-section';
 
-import { Button, DlxParagraph } from "dlx-components";
-import Image from "next/image";
-import { DlxNavbar } from "dlx-components"
+const sampleProjects = [
+  {
+    id: '123456',
+    title: 'RMNC',
+    description:
+      'Una innovadora plataforma de análisis de datos que utiliza IA para predecir tendencias del mercado.',
+    portrait: '/images/RNMC.jpg',
+  },
+  {
+    id: 'MGJA',
+    title: 'MGJA',
+    description:
+      'Desarrollo de una aplicación móvil para la gestión de comunidades locales y eventos.',
+    portrait: '/images/MGJA.jpg',
+  },
+  {
+    id: 'XMYN',
+    title: 'XMYN',
+    description:
+      'Un sistema de e-commerce descentralizado construido sobre tecnología blockchain para mayor seguridad.',
+    portrait: '/images/XMYN.jpg',
+  },
+];
 
 export default function Home() {
   return (
     <>
-      <DlxNavbar type="smoke" />
-      <div className="relative w-full h-screen pt-10">
-        <Image
-          src="/images/portada.jpg"
-          alt="Portada"
-          fill
-          style={{ objectFit: "cover", zIndex: 0, opacity: 0.5 }}
-          priority
-        />
-        <div className="absolute inset-0 h-auto font-sans w-full flex flex-col items-center justify-center gap-24 z-10">
-          <DlxParagraph>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</DlxParagraph>
-          <Button variant="accent">Click me</Button>
-          <h1 className="text-4xl font-sans">Hello World</h1>
-        </div>
-      </div>
-      <div className="relative w-full flex items-center justify-center h-screen bg-jet pt-10">
-        <div className="w-full max-w-7xl">
-          <h1 className="text-4xl font-sans text-smoke">SERVICIOS</h1>
-        </div>
-      </div>
+      <DlxNavbar />
+      <HomePortrait />
+      <main className='scroll-smooth snap-y snap-mandatory'>
+        <HomeServices />
+      </main>
+      <ProjectsHome projects={sampleProjects} />
+      <AllProjects projects={sampleProjects} />
+      <ContactSection />
+      <DlxFooter />
     </>
   );
 }
