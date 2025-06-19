@@ -49,6 +49,7 @@ body {
   background: var(--jet);
   color: var(--jet);
   font-family: var(--font-montserrat);
+  scroll-behavior: smooth;
 }
 
 .hide-scrollbar {

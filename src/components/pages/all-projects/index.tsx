@@ -3,6 +3,7 @@
 import { AllProjects } from '@/components/pages/all-projects/project-sticky-all';
 import { DlxNavbar } from 'dlx-components';
 import { DlxFooter } from 'dlx-components';
+import { NavLinks } from '@/components/nav-links';
 import type { ProjectPortrait } from '@/types/project';
 
 export default function ProjectsPage({
@@ -12,7 +13,9 @@ export default function ProjectsPage({
 }) {
   return (
     <>
-      <DlxNavbar type='smoke' />
+      <DlxNavbar>
+        <NavLinks type='smoke' />
+      </DlxNavbar>
       <main className='flex items-center bg-smoke justify-center h-96 py-12'>
         <h1 className='text-7xl font-bold'>DESPEJA TUS DUDAS</h1>
       </main>

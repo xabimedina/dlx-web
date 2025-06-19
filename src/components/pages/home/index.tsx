@@ -6,7 +6,7 @@ import { HomePortrait } from './portrait';
 import { HomeServices } from './services';
 import { ContactSection } from './contact-section';
 import { ProjectsHome } from '@/components/pages/home/project-sticky-home';
-
+import { NavLinks } from '@/components/nav-links';
 import type { ProjectPortrait } from '@/types/project';
 
 export function HomePage({
@@ -16,7 +16,9 @@ export function HomePage({
 }) {
   return (
     <>
-      <DlxNavbar />
+      <DlxNavbar>
+        <NavLinks type='jet' />
+      </DlxNavbar>
       <HomePortrait />
       <main className='scroll-smooth snap-y snap-mandatory'>
         <HomeServices />
