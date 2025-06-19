@@ -1,0 +1,29 @@
+'use client';
+
+import { DlxNavbar } from 'dlx-components';
+import { DlxFooter } from 'dlx-components';
+import { HomePortrait } from './portrait';
+import { HomeServices } from './services';
+import { ContactSection } from './contact-section';
+import { ProjectsHome } from '@/components/pages/home/project-sticky-home';
+
+import type { ProjectPortrait } from '@/types/project';
+
+export function HomePage({
+  portraitProjects,
+}: {
+  portraitProjects: ProjectPortrait[];
+}) {
+  return (
+    <>
+      <DlxNavbar />
+      <HomePortrait />
+      <main className='scroll-smooth snap-y snap-mandatory'>
+        <HomeServices />
+      </main>
+      <ProjectsHome projects={portraitProjects} />
+      <ContactSection />
+      <DlxFooter />
+    </>
+  );
+}

@@ -1,3 +1,4 @@
+'use client';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
 import { Button } from 'dlx-components';
 import { DlxLink } from 'dlx-components';

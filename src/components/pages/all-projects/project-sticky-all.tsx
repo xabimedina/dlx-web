@@ -1,43 +1,21 @@
 'use client';
 
 import { DlxLink } from 'dlx-components';
-import { ProjectStickyContainer } from './project-sticky-container';
-
-type Project = {
-  title: string;
-  description: string;
-  portrait: string;
-};
+import { ProjectStickyContainer } from '@/components/project-sticky-container';
+import type { ProjectPortrait } from '@/types/project';
+import { Z_INDEX_CLASSES } from '@/constants';
 
 type ProjectsProps = {
-  projects: Project[];
+  projects: ProjectPortrait[];
 };
 
-const zIndexClasses = [
-  'z-[1]',
-  'z-[2]',
-  'z-[3]',
-  'z-[4]',
-  'z-[5]',
-  'z-[6]',
-  'z-[7]',
-  'z-[8]',
-  'z-[9]',
-  'z-[10]',
-  'z-[11]',
-  'z-[12]',
-  'z-[13]',
-  'z-[14]',
-  'z-[15]',
-];
-
-const getProjectsWithMetadata = (projects: Project[]) => {
+const getProjectsWithMetadata = (projects: ProjectPortrait[]) => {
   if (!projects?.length) return [];
 
-  return projects.map((project: Project, index: number) => ({
+  return projects.map((project: ProjectPortrait, index: number) => ({
     ...project,
     background: `bg-[url(${project.portrait})]`,
-    alt: `Imagen de proyecto Despeja la X - ${project.title}`,
+    alt: `Imagen de proyecto Despeja la X - ${project.name}`,
   }));
 };
 
@@ -53,8 +31,8 @@ export const AllProjects = ({ projects }: ProjectsProps) => {
       {projectsWithMetadata.map((project, index) => {
         return (
           <ProjectStickyContainer
-            className={`${zIndexClasses[index] ?? 'z-50'}`}
-            key={`${project.title}-${index}`}
+            className={`${Z_INDEX_CLASSES[index] ?? 'z-50'}`}
+            key={`${project.name}-${index}`}
           >
             <article
               className=' group relative h-[70vh] w-full overflow-hidden 
@@ -71,7 +49,7 @@ export const AllProjects = ({ projects }: ProjectsProps) => {
 
               <div className='relative z-20 flex justify-center items-center h-full w-full'>
                 <h2 className='cursor-pointer text-[12rem] font-bold font-kanit uppercase tracking-widest text-smoke'>
-                  <DlxLink href='#'>{project.title}</DlxLink>
+                  <DlxLink href='#'>{project.name}</DlxLink>
                 </h2>
               </div>
             </article>

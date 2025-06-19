@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "dlx-components": "link:dlx-components",
+    "firebase": "^11.9.1",
+    "firebase-admin": "^13.4.0",
     "lucide-react": "^0.511.0",
     "next": "15.3.3",
     "react": "^19.0.0",

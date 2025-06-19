@@ -1,73 +1,29 @@
 import { DlxParagraph } from 'dlx-components';
-import { ProjectStickyContainer } from './project-sticky-container';
+import { ProjectStickyContainer } from '@/components/project-sticky-container';
 import { DlxLink } from 'dlx-components';
-
-type Project = {
-  title: string;
-  description: string;
-  portrait: string; // URL de la imagen
-};
+import type { ProjectPortrait } from '@/types/project';
+import { Z_INDEX_CLASSES, BACKGROUND_MAP_STYLES } from '@/constants';
 
 type ProjectsProps = {
-  projects: Project[];
+  projects: ProjectPortrait[];
 };
 
-const zIndexClasses = [
-  'z-[1]',
-  'z-[2]',
-  'z-[3]',
-  'z-[4]',
-  'z-[5]',
-  'z-[6]',
-  'z-[7]',
-  'z-[8]',
-  'z-[9]',
-  'z-[10]',
-  'z-[11]',
-  'z-[12]',
-  'z-[13]',
-  'z-[14]',
-  'z-[15]',
-];
-
-const backgroundMapStyles = [
-  {
-    background: 'bg-jet text-smoke',
-    paragraph: {
-      color: 'smoke',
-      borderColor: 'smoke',
-    },
-  },
-  {
-    background: 'bg-saffron text-jet',
-    paragraph: {
-      color: 'jet',
-      borderColor: 'jet',
-    },
-  },
-  {
-    background: 'bg-smoke text-jet',
-    paragraph: {
-      color: 'jet',
-      borderColor: 'saffron',
-    },
-  },
-] as const;
-
-const getProjectsWithMetadata = (projects: Project[]) => {
+const getProjectsWithMetadata = (projects: ProjectPortrait[]) => {
   if (!projects?.length) return [];
 
-  return projects.map((project: Project, index: number) => ({
-    ...project,
-    index,
-    isFirst: index === 0,
-    isLast: index === projects.length - 1,
-    zIndex: Math.min(index + 1, 50),
-    background: backgroundMapStyles[index].background,
-    color: backgroundMapStyles[index].paragraph.color,
-    borderColor: backgroundMapStyles[index].paragraph.borderColor,
-    alt: `Imagen de proyecto Despeja la X - ${project.title}`,
-  }));
+  return projects.map((project: ProjectPortrait, index: number) => {
+    return {
+      ...project,
+      index,
+      isFirst: index === 0,
+      isLast: index === projects.length - 1,
+      zIndex: Math.min(index + 1, 50),
+      background: BACKGROUND_MAP_STYLES[index].background,
+      color: BACKGROUND_MAP_STYLES[index].paragraph.color,
+      borderColor: BACKGROUND_MAP_STYLES[index].paragraph.borderColor,
+      alt: `Imagen de proyecto Despeja la X - ${project.name}`,
+    };
+  });
 };
 
 export const ProjectsHome = ({ projects }: ProjectsProps) => {
@@ -82,10 +38,10 @@ export const ProjectsHome = ({ projects }: ProjectsProps) => {
       {projectsWithMetadata.map((project, index) => {
         return (
           <ProjectStickyContainer
-            className={`${zIndexClasses[index] ?? 'z-50'} ${
+            className={`${Z_INDEX_CLASSES[index] ?? 'z-50'} ${
               project.background
             }`}
-            key={`${project.title}-${index}`}
+            key={`${project.name}-${index}`}
           >
             <article className='h-[80vh]'>
               <div className='absolute h-6/12 left-30 top-1/2 -translate-y-1/2 space-y-[28%]'>
@@ -93,7 +49,7 @@ export const ProjectsHome = ({ projects }: ProjectsProps) => {
                   className='text-[8rem] tracking-widest uppercase font-bold font-kanit'
                   href='#'
                 >
-                  {project.title}
+                  {project.name}
                 </DlxLink>
                 <DlxParagraph
                   color={project.color}
@@ -111,7 +67,7 @@ export const ProjectsHome = ({ projects }: ProjectsProps) => {
               >
                 <img
                   src={project.portrait}
-                  alt={`Retrato para el proyecto ${project.title}`}
+                  alt={`Retrato para el proyecto ${project.name}`}
                   className='object-cover w-full h-full'
                 />
               </a>
