@@ -13,8 +13,8 @@ export default function ProjectsPage({
 }) {
   return (
     <>
-      <DlxNavbar>
-        <NavLinks type='smoke' />
+      <DlxNavbar type='smoke'>
+        <NavLinks />
       </DlxNavbar>
       <main className='flex items-center bg-smoke justify-center h-96 py-12'>
         <h1 className='text-7xl font-bold'>DESPEJA TUS DUDAS</h1>

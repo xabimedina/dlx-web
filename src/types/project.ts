@@ -23,8 +23,7 @@ export interface Project {
   workType: CategoryItem;
 }
 
-export interface ProjectPortrait {
-  name: string;
-  description: string;
-  portrait: string;
-}
+export type ProjectPortrait = Pick<
+  Project,
+  'name' | 'description' | 'portrait' | 'color' | 'id'
+>;

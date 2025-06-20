@@ -1,6 +1,6 @@
 'use client';
 
-import { DlxLink } from 'dlx-components';
+import { DlxLink } from '../dlx-link';
 import { ProjectStickyContainer } from '@/components/project-sticky-container';
 import type { ProjectPortrait } from '@/types/project';
 import { Z_INDEX_CLASSES } from '@/constants';
@@ -14,6 +14,7 @@ const getProjectsWithMetadata = (projects: ProjectPortrait[]) => {
 
   return projects.map((project: ProjectPortrait, index: number) => ({
     ...project,
+    color: `text-${project.color}`,
     background: `bg-[url(${project.portrait})]`,
     alt: `Imagen de proyecto Despeja la X - ${project.name}`,
   }));
@@ -48,8 +49,12 @@ export const AllProjects = ({ projects }: ProjectsProps) => {
               ></div>
 
               <div className='relative z-20 flex justify-center items-center h-full w-full'>
-                <h2 className='cursor-pointer text-[12rem] font-bold font-kanit uppercase tracking-widest text-smoke'>
-                  <DlxLink href='#'>{project.name}</DlxLink>
+                <h2
+                  className={`cursor-pointer text-[12rem] font-bold font-kanit uppercase tracking-widest ${project.color}`}
+                >
+                  <DlxLink href={`/proyectos/${project.id}`}>
+                    {project.name}
+                  </DlxLink>
                 </h2>
               </div>
             </article>

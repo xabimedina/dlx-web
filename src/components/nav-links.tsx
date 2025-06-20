@@ -1,4 +1,6 @@
+'use client';
 import { DlxLink } from './pages/dlx-link';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
@@ -6,12 +8,12 @@ const navLinks = [
   { href: '/#contacto', label: 'Contacto' },
 ];
 
-interface NavLinksProps {
-  type: 'smoke' | 'jet';
-}
+export function NavLinks() {
+  const pathname = usePathname();
+  const isProjectsRoute = pathname.startsWith('/proyectos');
+  const currentType = isProjectsRoute ? 'smoke' : 'jet';
 
-export function NavLinks({ type }: NavLinksProps) {
-  const textColor = type === 'smoke' ? 'text-jet' : 'text-smoke';
+  const textColor = currentType === 'smoke' ? 'text-jet' : 'text-smoke';
   return (
     <>
       {navLinks.map(link => (

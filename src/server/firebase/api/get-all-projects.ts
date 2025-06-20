@@ -5,6 +5,35 @@ import type { Project } from '@/types/project';
 const COLLECTION = 'projects';
 
 /**
+ * Devuelve un proyecto específico por su ID con las URLs de descarga
+ * resueltas para imágenes y retrato.
+ */
+export async function getProjectById(id: string): Promise<Project | null> {
+  try {
+    const doc = await db.collection(COLLECTION).doc(id).get();
+
+    if (!doc.exists) {
+      return null;
+    }
+
+    const raw = doc.data() as Omit<Project, 'images' | 'portrait'> & {
+      images: string[];
+      portrait: string;
+    };
+
+    const [images, portrait] = await Promise.all([
+      Promise.all(raw.images.slice(0, 5).map(path => getDownloadUrl(path))),
+      getDownloadUrl(raw.portrait),
+    ]);
+
+    return { ...raw, images, portrait } as Project;
+  } catch (err) {
+    console.error('Error fetching project:', err);
+    return null;
+  }
+}
+
+/**
  * Devuelve todos los proyectos con las URLs de descarga
  * resueltas para imágenes y retrato.
  */

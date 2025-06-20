@@ -39,3 +39,12 @@ export const BACKGROUND_MAP_STYLES = [
     },
   },
 ] as const;
+
+// Destinado para la pagina de proyecto
+export const GALLERY_MAP_STYLES = [
+  { aspectRatio: 4 / 3, gridClass: 'md:col-span-1' }, // Imagen 1
+  { aspectRatio: 4 / 3, gridClass: 'md:col-span-1' }, // Imagen 2
+  { aspectRatio: 16 / 10, gridClass: 'md:col-span-2' }, // Imagen 3 (ancha)
+  { aspectRatio: 4 / 3, gridClass: 'md:col-span-1' }, // Imagen 4
+  { aspectRatio: 4 / 3, gridClass: 'md:col-span-1' }, // Imagen 5
+] as const;
