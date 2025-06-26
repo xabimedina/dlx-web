@@ -3,6 +3,7 @@ import { ProjectStickyContainer } from '@/components/project-sticky-container';
 import { DlxLink } from '@/components/pages/dlx-link';
 import type { ProjectPortrait } from '@/types/project';
 import { Z_INDEX_CLASSES, BACKGROUND_MAP_STYLES } from '@/constants';
+import Image from 'next/image';
 
 type ProjectsProps = {
   projects: ProjectPortrait[];
@@ -65,10 +66,11 @@ export const ProjectsHome = ({ projects }: ProjectsProps) => {
                 href='#'
                 className='w-4/12 h-6/12 absolute -right-0 top-1/2 -translate-y-1/2'
               >
-                <img
+                <Image
                   src={project.portrait}
                   alt={`Retrato para el proyecto ${project.name}`}
-                  className='object-cover w-full h-full'
+                  className='object-cover'
+                  fill
                 />
               </a>
             </article>
