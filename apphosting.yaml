@@ -69,12 +69,8 @@ buildConfig:
       command: |
         echo "@xabimedina:registry=https://npm.pkg.github.com" > .npmrc
         echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
+        cat .npmrc
     - name: "Install dependencies"
-      command: "npm install --force"
+      command: "npm ci --quiet"
     - name: "Build application"
       command: "npm run build"
-env:
-  - variable: CLIENT_EMAIL
-    secret: CLIENT_EMAIL
-  - variable: PRIVATE_KEY
-    secret: PRIVATE_KEY

@@ -39,4 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# NPM config with tokens (keep private)
 .npmrc
+
+# Note: package-lock.json is intentionally tracked for Firebase App Hosting
