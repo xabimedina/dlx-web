@@ -64,13 +64,17 @@ runConfig:
 # Scripts override for custom build process
 scripts:
   buildCommand: |
+    echo "=== Custom Build Process Started ==="
     echo "Setting up NPM registry..."
     echo "@xabimedina:registry=https://npm.pkg.github.com" > .npmrc
     echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
-    echo "Installing dependencies..."
-    npm ci --quiet
+    echo "Verifying .npmrc configuration..."
+    cat .npmrc
+    echo "Installing dependencies with custom registry..."
+    npm install --production=false --quiet --no-fund --no-audit
     echo "Building application..."
     npm run build
+    echo "=== Custom Build Process Completed ==="
 
 # Build configuration (keeping as backup)
 # buildConfig:
