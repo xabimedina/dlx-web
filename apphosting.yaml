@@ -70,7 +70,7 @@ buildConfig:
         echo "@xabimedina:registry=https://npm.pkg.github.com" > .npmrc
         echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
     - name: "Install dependencies"
-      command: "npm install --legacy-peer-deps"
+      command: "npm install --force"
     - name: "Build application"
       command: "npm run build"
 env:
