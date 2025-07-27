@@ -4,11 +4,11 @@
     "": {
       "name": "dlx-web",
       "dependencies": {
-        "@xabimedina/dlx-components": "1.0.0",
+        "@xabimedina/dlx-components": "^1.0.1",
         "firebase": "^12.0.0",
         "firebase-admin": "^13.4.0",
         "lucide-react": "^0.526.0",
-        "next": "^15.4.4",
+        "next": "15.4.4",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
@@ -502,7 +502,7 @@
 
     "@unrs/resolver-binding-win32-x64-msvc": ["@unrs/resolver-binding-win32-x64-msvc@1.11.1", "", { "os": "win32", "cpu": "x64" }, "sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g=="],
 
-    "@xabimedina/dlx-components": ["@xabimedina/dlx-components@1.0.0", "https://npm.pkg.github.com/download/@xabimedina/dlx-components/1.0.0/2d7d54233aee33b46ff59e6b31cbafcced99efd7", { "dependencies": { "@radix-ui/react-aspect-ratio": "^1.1.7", "@radix-ui/react-checkbox": "^1.3.2", "@radix-ui/react-dialog": "^1.1.14", "@radix-ui/react-dropdown-menu": "^2.1.15", "@radix-ui/react-hover-card": "^1.1.14", "@radix-ui/react-label": "^2.1.7", "@radix-ui/react-scroll-area": "^1.2.9", "@radix-ui/react-select": "^2.2.5", "@radix-ui/react-separator": "^1.1.7", "@radix-ui/react-slot": "^1.2.3", "@radix-ui/react-switch": "^1.2.5", "@radix-ui/react-tooltip": "^1.2.7", "class-variance-authority": "^0.7.1", "clsx": "^2.1.1", "tailwind-merge": "^3.3.1" }, "peerDependencies": { "lucide-react": "^0.523.0", "react": "^19.0.0", "react-dom": "^19.0.0" } }, "sha512-oa4vTKiwXvUCJlIsCaHglGOpVMEF8/7JYJxGYvEn3EQjuJh9g1e5/qkRf0N9c9vSOQrfj9bh6cqFnlZpE7U+6w=="],
+    "@xabimedina/dlx-components": ["@xabimedina/dlx-components@1.0.1", "https://npm.pkg.github.com/download/@xabimedina/dlx-components/1.0.1/e06620de12b2aef6bbafd209efc1c96d8264388d", { "dependencies": { "@radix-ui/react-aspect-ratio": "^1.1.7", "@radix-ui/react-checkbox": "^1.3.2", "@radix-ui/react-dialog": "^1.1.14", "@radix-ui/react-dropdown-menu": "^2.1.15", "@radix-ui/react-hover-card": "^1.1.14", "@radix-ui/react-label": "^2.1.7", "@radix-ui/react-scroll-area": "^1.2.9", "@radix-ui/react-select": "^2.2.5", "@radix-ui/react-separator": "^1.1.7", "@radix-ui/react-slot": "^1.2.3", "@radix-ui/react-switch": "^1.2.5", "@radix-ui/react-tooltip": "^1.2.7", "class-variance-authority": "^0.7.1", "clsx": "^2.1.1", "tailwind-merge": "^3.3.1" }, "peerDependencies": { "lucide-react": "*", "react": "*", "react-dom": "*" } }, "sha512-id5DZhIE4zQ4BUsDnDazhKOHB4B5t/Qpd/1mgOWXphW35eupmEjV5BQ7q83aYOvVyAJfAde8dTM9CKBgCcSpXQ=="],
 
     "abort-controller": ["abort-controller@3.0.0", "", { "dependencies": { "event-target-shim": "^5.0.0" } }, "sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg=="],
 
