@@ -40,7 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# NPM config with tokens (keep private)
-.npmrc
+# NPM config with tokens (keep private for local development)
+# .npmrc is tracked for Firebase App Hosting deployment
+.npmrc.local
 
-# Note: package-lock.json is intentionally tracked for Firebase App Hosting
+# Note: package-lock.json and .npmrc are intentionally tracked for Firebase App Hosting
