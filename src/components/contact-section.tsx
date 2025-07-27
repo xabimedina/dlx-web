@@ -1,7 +1,7 @@
 'use client';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
-import { Button } from 'dlx-components';
-import { DlxLink } from 'dlx-components';
+import { Button } from '@xabimedina/dlx-components';
+import { DlxLink } from '@xabimedina/dlx-components';
 
 export const ContactSection = () => {
   return (

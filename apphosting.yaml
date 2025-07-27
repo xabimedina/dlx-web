@@ -1,0 +1,80 @@
+# Settings for Backend (on Cloud Run).
+# See https://firebase.google.com/docs/app-hosting/configure#cloud-run
+runConfig:
+  minInstances: 0
+  # maxInstances: 100
+  # concurrency: 80
+  # cpu: 1
+  # memoryMiB: 512
+
+  # Environment variables and secrets.
+  env:
+    # Configure environment variables.
+    # See https://firebase.google.com/docs/app-hosting/configure#user-defined-environment
+    - variable: NODE_ENV
+      value: production
+      availability:
+        - BUILD
+        - RUNTIME
+    - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+      value: AIzaSyAeYedxIAwRulVbMRO6wojWNP0OxZ_AHoE
+      availability:
+        - BUILD
+        - RUNTIME
+    - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+      value: despejalapp.firebaseapp.com
+      availability:
+        - BUILD
+        - RUNTIME
+    - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+      value: despejalapp
+      availability:
+        - BUILD
+        - RUNTIME
+    - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+      value: despejalapp.firebasestorage.app
+      availability:
+        - BUILD
+        - RUNTIME
+    - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+      value: "829460963939"
+      availability:
+        - BUILD
+        - RUNTIME
+    - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+      value: 1:829460963939:web:a7c27c00095a83bd00ce56
+      availability:
+        - BUILD
+        - RUNTIME
+    - variable: GITHUB_TOKEN
+      secret: GITHUB_TOKEN
+      availability:
+        - BUILD
+    # Firebase Admin SDK variables (runtime)
+    - variable: PRIVATE_KEY
+      secret: PRIVATE_KEY
+      availability:
+        - RUNTIME
+    - variable: CLIENT_EMAIL
+      value: CLIENT_EMAIL
+      availability:
+        - RUNTIME
+
+
+# Build configuration
+# See https://firebase.google.com/docs/app-hosting/configure#build-commands
+buildConfig:
+  commands:
+    - name: "Setup NPM Registry"
+      command: |
+        echo "@xabimedina:registry=https://npm.pkg.github.com" > .npmrc
+        echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
+    - name: "Install dependencies"
+      command: "npm install"
+    - name: "Build application"
+      command: "npm run build"
+env:
+  - variable: CLIENT_EMAIL
+    secret: CLIENT_EMAIL
+  - variable: PRIVATE_KEY
+    secret: PRIVATE_KEY

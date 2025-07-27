@@ -1,7 +1,7 @@
 'use client';
 
-import { DlxNavbar } from 'dlx-components';
-import { DlxFooter } from 'dlx-components';
+import { DlxNavbar } from '@xabimedina/dlx-components';
+import { DlxFooter } from '@xabimedina/dlx-components';
 import { HomePortrait } from './portrait';
 import { HomeServices } from './services';
 import { ContactSection } from '../../contact-section';

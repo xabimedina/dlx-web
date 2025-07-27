@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { cn } from 'dlx-components';
+import { cn } from '@xabimedina/dlx-components';
 import Link from 'next/link';
 
 import type { LinkProps as NextLinkProps } from 'next/link';

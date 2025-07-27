@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { GALLERY_MAP_STYLES } from '@/constants';
-import { AspectRatio } from 'dlx-components';
+import { AspectRatio } from '@xabimedina/dlx-components';
 
 export function ProjectGallery({ images }: { images: string[] }) {
   return (

@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore';
 import { db } from '../config';
 import { getDownloadUrl } from '../storage/get-download-url';
 import type { Project } from '@/types/project';
@@ -16,9 +17,10 @@ export async function getProjectById(id: string): Promise<Project | null> {
       return null;
     }
 
-    const raw = doc.data() as Omit<Project, 'images' | 'portrait'> & {
+    const raw = doc.data() as Omit<Project, 'images' | 'portrait' | 'createdAt'> & {
       images: string[];
       portrait: string;
+      createdAt: Timestamp;
     };
 
     const [images, portrait] = await Promise.all([
@@ -26,7 +28,7 @@ export async function getProjectById(id: string): Promise<Project | null> {
       getDownloadUrl(raw.portrait),
     ]);
 
-    return { ...raw, images, portrait } as Project;
+    return { ...raw, createdAt: raw.createdAt.toDate(), images, portrait } as Project;
   } catch (err) {
     console.error('Error fetching project:', err);
     return null;

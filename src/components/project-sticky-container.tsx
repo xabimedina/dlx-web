@@ -1,4 +1,4 @@
-import { cn } from 'dlx-components';
+import { cn } from '@xabimedina/dlx-components';
 
 interface ProjectStickyContainerProps {
   className: string;

@@ -1,4 +1,4 @@
-import { DlxParagraph } from 'dlx-components';
+import { DlxParagraph } from '@xabimedina/dlx-components';
 import { ProjectStickyContainer } from '@/components/project-sticky-container';
 import { DlxLink } from '@/components/pages/dlx-link';
 import type { ProjectPortrait } from '@/types/project';

@@ -12,7 +12,7 @@ type ProjectsProps = {
 const getProjectsWithMetadata = (projects: ProjectPortrait[]) => {
   if (!projects?.length) return [];
 
-  return projects.map((project: ProjectPortrait, index: number) => ({
+  return projects.map((project: ProjectPortrait) => ({
     ...project,
     color: `text-${project.color}`,
     background: `bg-[url(${project.portrait})]`,

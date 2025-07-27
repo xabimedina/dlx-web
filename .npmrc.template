@@ -1,0 +1,10 @@
+# NPM Registry Configuration Template
+# Copy this file to .npmrc and replace YOUR_GITHUB_TOKEN with your actual token
+
+@xabimedina:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+
+# To get a GitHub token:
+# 1. Go to GitHub → Settings → Developer settings → Personal access tokens
+# 2. Generate a new token (classic) with 'read:packages' permission
+# 3. Replace YOUR_GITHUB_TOKEN with the generated token

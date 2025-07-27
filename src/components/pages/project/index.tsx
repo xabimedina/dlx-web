@@ -1,10 +1,9 @@
 'use client';
 
-import { DlxNavbar, DlxFooter } from 'dlx-components';
+import { DlxNavbar, DlxFooter } from '@xabimedina/dlx-components';
 import { ProjectGallery } from '@/components/pages/project/gallery';
 import { NavLinks } from '@/components/nav-links';
 import { ContactSection } from '@/components/contact-section';
-import Image from 'next/image';
 import type { Project } from '@/types/project';
 import { ProjectPortrait } from './portrait';
 

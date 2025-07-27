@@ -1,5 +1,20 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Prerequisites
+
+This project uses private packages from GitHub Packages. Before running the project locally, you need to configure authentication:
+
+1. Copy the `.npmrc.template` file to `.npmrc`:
+   ```bash
+   cp .npmrc.template .npmrc
+   ```
+
+2. Get a GitHub Personal Access Token:
+   - Go to GitHub → Settings → Developer settings → Personal access tokens
+   - Generate a new token (classic) with `read:packages` permission
+   
+3. Replace `YOUR_GITHUB_TOKEN` in `.npmrc` with your actual token
+
 ## Getting Started
 
 First, run the development server:

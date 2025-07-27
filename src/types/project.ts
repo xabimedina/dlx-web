@@ -1,3 +1,4 @@
+
 export interface CategoryItem {
   id: string;
   name: string;
@@ -21,6 +22,7 @@ export interface Project {
   description: string;
   projectStyle: CategoryItem;
   workType: CategoryItem;
+  createdAt: Date;
 }
 
 export type ProjectPortrait = Pick<

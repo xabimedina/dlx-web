@@ -1,8 +1,8 @@
 'use client';
 
 import { AllProjects } from '@/components/pages/all-projects/project-sticky-all';
-import { DlxNavbar } from 'dlx-components';
-import { DlxFooter } from 'dlx-components';
+import { DlxNavbar } from '@xabimedina/dlx-components';
+import { DlxFooter } from '@xabimedina/dlx-components';
 import { NavLinks } from '@/components/nav-links';
 import type { ProjectPortrait } from '@/types/project';
 

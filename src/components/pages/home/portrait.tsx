@@ -1,6 +1,5 @@
 'use client';
-import Image from 'next/image';
-import { Button } from 'dlx-components';
+import { Button } from '@xabimedina/dlx-components';
 import BackgroundVideo from './background-video';
 
 export function HomePortrait() {

@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { AspectRatio } from 'dlx-components';
 
 export function ProjectPortrait({ image }: { image: string }) {
   const sectionRef = useRef<HTMLElement>(null);
