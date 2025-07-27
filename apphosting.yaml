@@ -61,16 +61,26 @@ runConfig:
         - RUNTIME
 
 
-# Build configuration
-# See https://firebase.google.com/docs/app-hosting/configure#build-commands
-buildConfig:
-  commands:
-    - name: "Setup NPM Registry"
-      command: |
-        echo "@xabimedina:registry=https://npm.pkg.github.com" > .npmrc
-        echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
-        cat .npmrc
-    - name: "Install dependencies"
-      command: "npm ci --quiet"
-    - name: "Build application"
-      command: "npm run build"
+# Scripts override for custom build process
+scripts:
+  buildCommand: |
+    echo "Setting up NPM registry..."
+    echo "@xabimedina:registry=https://npm.pkg.github.com" > .npmrc
+    echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
+    echo "Installing dependencies..."
+    npm ci --quiet
+    echo "Building application..."
+    npm run build
+
+# Build configuration (keeping as backup)
+# buildConfig:
+#   commands:
+#     - name: "Setup NPM Registry"
+#       command: |
+#         echo "@xabimedina:registry=https://npm.pkg.github.com" > .npmrc
+#         echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc
+#         cat .npmrc
+#     - name: "Install dependencies"
+#       command: "npm ci --quiet"
+#     - name: "Build application"
+#       command: "npm run build"

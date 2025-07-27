@@ -1,0 +1,4 @@
+# NPM Registry Configuration for Firebase App Hosting
+# This file should NOT contain actual tokens
+@xabimedina:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
