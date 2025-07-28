@@ -1,6 +1,7 @@
+import 'server-only'; // Ensure server-only is imported first
 import { Timestamp } from 'firebase/firestore';
 import { db } from '../config';
-import { getDownloadUrl } from '../storage/get-download-url';
+import { getDownloadUrl } from '../storage';
 import type { Project } from '@/types/project';
 
 const COLLECTION = 'projects';
