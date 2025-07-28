@@ -46,8 +46,8 @@ runConfig:
       availability:
         - BUILD
         - RUNTIME
-    - variable: GITHUB_TOKEN
-      secret: GITHUB_TOKEN
+    - variable: NPM_TOKEN
+      secret: NPM_TOKEN
       availability:
         - BUILD
     # Firebase Admin SDK variables (runtime)
