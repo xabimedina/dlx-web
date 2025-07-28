@@ -1,7 +1,7 @@
 import { HomePage } from '@/components/pages/home';
 import { getPortraitProjects } from '@/server/firebase/api';
 
-export const revalidate = 7200; // invalidate every 2 hours
+export const revalidate = 14400; // invalidate every 4 hours
 
 export default async function Inicio() {
   const projects = await getPortraitProjects();
