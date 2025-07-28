@@ -5,7 +5,7 @@ import { DlxFooter } from '@xabimedina/dlx-components';
 import { HomePortrait } from './portrait';
 import { HomeServices } from './services';
 import { ContactSection } from '../../contact-section';
-import { ProjectsHome } from '@/components/pages/home/project-sticky-home';
+import { ProjectsHome } from '@/components/pages/home/project-sticky';
 import { NavLinks } from '@/components/nav-links';
 import type { ProjectPortrait } from '@/types/project';
 

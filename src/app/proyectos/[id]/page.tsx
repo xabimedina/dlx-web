@@ -19,7 +19,6 @@ export default async function Proyecto({
 }) {
   const { id } = await params;
   const project = await getProjectById(id);
-  console.log('Project:', project);
 
   if (!project) {
     return notFound();

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
 
 const services = [
   {
@@ -18,6 +19,36 @@ const services = [
   },
 ];
 
+// Componente individual para cada servicio
+function ServiceItem({ service }: { service: typeof services[0] }) {
+  const titleRef = useIntersectionAnimation<HTMLHeadingElement>({
+    animation: 'fadeInUp',
+    threshold: 0.3,
+  });
+  const paragraphRef = useIntersectionAnimation<HTMLParagraphElement>({
+    animation: 'fadeInUp',
+    delay: 0.2,
+    threshold: 0.3,
+  });
+
+  return (
+    <div className='h-[80vh] flex flex-col justify-center px-8 md:px-16 lg:px-20 space-y-4'>
+      <h2 
+        ref={titleRef} 
+        className='text-4xl md:text-3xl lg:text-4xl font-bold text-jet tracking-wide'
+      >
+        {service.title}
+      </h2>
+      <p 
+        ref={paragraphRef} 
+        className='text-jet leading-relaxed text-lg md:text-base max-w-md'
+      >
+        {service.description}
+      </p>
+    </div>
+  );
+}
+
 export function HomeServices() {
   return (
     <section className='bg-smoke '>
@@ -25,17 +56,7 @@ export function HomeServices() {
         {/* Left Side - Services */}
         <aside className=''>
           {services.map((service, index) => (
-            <div
-              key={index}
-              className='h-[80vh] flex flex-col justify-center px-8 md:px-16 lg:px-20 space-y-4'
-            >
-              <h2 className='text-4xl md:text-3xl lg:text-4xl font-bold text-jet tracking-wide'>
-                {service.title}
-              </h2>
-              <p className='text-jet leading-relaxed text-lg md:text-base max-w-md'>
-                {service.description}
-              </p>
-            </div>
+            <ServiceItem key={index} service={service} />
           ))}
         </aside>
 
