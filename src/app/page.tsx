@@ -11,6 +11,7 @@ export default async function Inicio() {
     portrait: project.portrait,
     color: project.color,
     id: project.id,
+    subName: project.subName,
   }));
 
   return <HomePage portraitProjects={portraitProjects} />;

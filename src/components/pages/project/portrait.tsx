@@ -2,7 +2,17 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-export function ProjectPortrait({ image }: { image: string }) {
+interface ProjectPortraitProps {
+  image: string;
+  info: {
+    workType: string;
+    projectStyle: string;
+    location: string;
+    area: string;
+  }
+}
+
+export function ProjectPortrait({ image, info }: ProjectPortraitProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [parallaxOffset, setParallaxOffset] = useState(0);
 
@@ -33,7 +43,7 @@ export function ProjectPortrait({ image }: { image: string }) {
   return (
     <section
       ref={sectionRef}
-      className='relative my-12 min-w-screen h-[50vh] overflow-hidden'
+      className='relative my-12 min-w-screen h-[65vh] overflow-hidden'
     >
       <div
         className='absolute inset-0 will-change-transform'
@@ -48,6 +58,25 @@ export function ProjectPortrait({ image }: { image: string }) {
           className='object-cover'
         />
       </div>
+      <section className='absolute bottom-2.5 left-1/2 transform -translate-x-1/2 px-16 mb-12 w-fit backdrop-blur-sm bg-white/10 py-6 rounded-sm shadow-2xl border border-white/20'>
+        <div className='relative max-md:w-screen grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 text-center'>
+          {[
+            { label: 'Tipo de Proyecto', value: info.workType },
+            { label: 'Estilo', value: info.projectStyle },
+            { label: 'Ubicación', value: info.location },
+            { label: 'm²', value: info.area }
+          ].map(({ label, value }, index) => (
+            <div key={index} className='relative z-10'>
+              <h3 className='text-xs md:text-sm font-medium text-white/90 mb-1 md:mb-2'>
+                {label}
+              </h3>
+              <p className='text-base md:text-lg font-semibold text-white '>
+                {value}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
     </section>
   );
 }

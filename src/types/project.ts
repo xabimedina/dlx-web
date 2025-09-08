@@ -27,5 +27,5 @@ export interface Project {
 
 export type ProjectPortrait = Pick<
   Project,
-  'name' | 'description' | 'portrait' | 'color' | 'id'
+  'name' | 'description' | 'portrait' | 'color' | 'id' | 'subName'
 >;

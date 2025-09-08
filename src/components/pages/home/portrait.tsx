@@ -49,29 +49,28 @@ export function HomePortrait() {
     <div className='relative w-full h-screen'>
       <BackgroundVideo onVideoLoaded={handleVideoLoaded} />
       <div 
-        className='max-w-[512px] absolute left-30 top-1/2 -translate-y-1/2 h-auto font-sans w-full flex flex-col items-center justify-center gap-12 z-10 text-smoke'
+        className='max-w-[760px] absolute inset-x-4 md:left-8 lg:left-16 xl:left-20 top-1/2 -translate-y-1/2 flex flex-col gap-6 md:gap-12 z-10 text-smoke'
       >
-        <div className='space-y-4'>
+        <div className='space-y-6'>
           <h1 
             ref={titleRef}
-            className='text-6xl font-bold'
+            className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-20 text-center sm:text-left'
             style={{ opacity: 0 }} // Estado inicial invisible
           >
-            UN PASO MAS A TU HOGAR
+            ESPACIOS PENSADOS HOGARES VÍVIDOS
           </h1>
           <p 
             ref={paragraphRef}
-            className=''
+            className='text-base sm:text-lg font-medium max-sm:pl-6'
             style={{ opacity: 0 }} // Estado inicial invisible
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-            lacinia orci in ante iaculis laoreet. Sed hendrerit porttitor quam
-            cursus mattis.
+            En despeja la x no buscamos soluciones estándar. Acompañamos tu proceso de reforma en Valencia desde el primer paso hasta el último detalle.
           </p>
         </div>
 
         <div 
           ref={buttonWrapperRef}
+          className='w-full flex justify-center'
           style={{ opacity: 0 }} // Estado inicial invisible
         >
           <Button 

@@ -11,6 +11,7 @@ export default async function Proyectos() {
     portrait: project.portrait,
     color: project.color,
     id: project.id,
+    subName: project.subName,
   }));
 
   return <ProjectsPage projects={portraitProjects} />;

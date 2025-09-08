@@ -20,6 +20,7 @@ export const getProjectsWithMetadata = (projects: ProjectPortrait[]) => {
       background: BACKGROUND_MAP_STYLES[index].background,
       color: BACKGROUND_MAP_STYLES[index].paragraph.color,
       borderColor: BACKGROUND_MAP_STYLES[index].paragraph.borderColor,
+      subName: project.subName || '',
       alt: `Imagen de proyecto Despeja la X - ${project.name}`,
     };
   });

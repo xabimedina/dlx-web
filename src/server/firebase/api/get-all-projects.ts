@@ -25,7 +25,7 @@ export async function getProjectById(id: string): Promise<Project | null> {
     };
 
     const [images, portrait] = await Promise.all([
-      Promise.all(raw.images.slice(0, 5).map(path => getDownloadUrl(path))),
+      Promise.all(raw.images.slice(0, 6).map(path => getDownloadUrl(path))),
       getDownloadUrl(raw.portrait),
     ]);
 

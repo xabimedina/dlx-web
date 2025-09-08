@@ -1,11 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { setupGSAP, animations } from '@/lib/gsap';
-
-type AnimationType = 'fadeInUp' | 'fadeIn' | 'slideInFromLeft' | 'fadeInUpBounce';
 
 interface UseIntersectionAnimationOptions {
-  animation?: AnimationType;
+  initialState?: gsap.TweenVars;
+  animation?: (element: gsap.TweenTarget, delay?: number) => gsap.core.Tween;
   delay?: number;
   threshold?: number;
   rootMargin?: string;
@@ -16,7 +14,8 @@ export const useIntersectionAnimation = <T extends HTMLElement = HTMLElement>(
   options: UseIntersectionAnimationOptions = {}
 ) => {
   const {
-    animation = 'fadeInUp',
+    initialState = { opacity: 0, y: 50, scale: 0.95 },
+    animation,
     delay = 0,
     threshold = 0.2,
     rootMargin = '0px 0px -10% 0px',
@@ -27,23 +26,21 @@ export const useIntersectionAnimation = <T extends HTMLElement = HTMLElement>(
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    setupGSAP();
-
     const element = elementRef.current;
-    if (!element) return;
+    if (!element || !animation) return;
 
-    // Establecer estado inicial y configurar animación
-    setInitialState(element, animation);
+    // Establecer estado inicial
+    gsap.set(element, initialState);
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && (!hasAnimated.current || !triggerOnce)) {
-            executeAnimation(element, animation, delay);
+            animation(element, delay);
             hasAnimated.current = true;
             if (triggerOnce) observer.unobserve(entry.target);
           } else if (!triggerOnce && hasAnimated.current) {
-            setInitialState(element, animation);
+            gsap.set(element, initialState);
             hasAnimated.current = false;
           }
         });
@@ -53,31 +50,7 @@ export const useIntersectionAnimation = <T extends HTMLElement = HTMLElement>(
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, [animation, delay, threshold, rootMargin, triggerOnce]);
+  }, [initialState, animation, delay, threshold, rootMargin, triggerOnce]);
 
   return elementRef;
-};
-
-// Estados iniciales para cada tipo de animación
-const setInitialState = (element: HTMLElement, animationType: AnimationType) => {
-  const initialStates: Record<AnimationType, object> = {
-    fadeInUp: { opacity: 0, y: 50, scale: 0.95 },
-    fadeInUpBounce: { opacity: 0, y: 50, scale: 0.9 },
-    slideInFromLeft: { opacity: 0, x: -100 },
-    fadeIn: { opacity: 0 },
-  };
-
-  gsap.set(element, initialStates[animationType]);
-}; 
-
-// Ejecución de animación usando solo animaciones predefinidas
-const executeAnimation = (element: HTMLElement, animationType: AnimationType, delay: number) => {
-  const animationMap: Record<AnimationType, (el: gsap.TweenTarget, d: number) => gsap.core.Tween> = {
-    fadeInUp: animations.fadeInUp,
-    fadeIn: animations.fadeIn,
-    slideInFromLeft: animations.slideInFromLeft,
-    fadeInUpBounce: animations.fadeInUpBounce,
-  };
-
-  return animationMap[animationType](element, delay);
 };

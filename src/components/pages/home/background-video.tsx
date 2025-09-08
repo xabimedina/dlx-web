@@ -1,60 +1,56 @@
-// components/BackgroundVideo.tsx
-'use client';
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
+import {useVideo} from '@/hooks/use-video';
 
 interface BackgroundVideoProps {
   onVideoLoaded?: () => void;
 }
 
 const BackgroundVideo = ({ onVideoLoaded }: BackgroundVideoProps) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const { videoRef, isVideoLoaded } = useVideo();
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleCanPlay = () => {
-      onVideoLoaded?.();
-    };
-
-    const handleLoadedData = () => {
-      onVideoLoaded?.();
-    };
-
-    // Agregar listeners para detectar cuando el video está listo
-    video.addEventListener('canplay', handleCanPlay);
-    video.addEventListener('loadeddata', handleLoadedData);
-
-    // Si el video ya está cargado, ejecutar inmediatamente
-    if (video.readyState >= 3) {
-      onVideoLoaded?.();
+    if (isVideoLoaded && onVideoLoaded) {
+      onVideoLoaded();
     }
-
-    return () => {
-      video.removeEventListener('canplay', handleCanPlay);
-      video.removeEventListener('loadeddata', handleLoadedData);
-    };
-  }, [onVideoLoaded]);
+  }, [isVideoLoaded, onVideoLoaded]);
 
   return (
-    <video
-      ref={videoRef}
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload='auto'
-      poster='/portrait.jpg'
-      id='bgVideo'
-      style={{
-        width: '100vw',
-        height: '100vh',
-        objectFit: 'cover',
-        opacity: 0.8,
-      }}
-    >
-      <source src='/portrait.webm' type='video/webm' />
-    </video>
+    <div className="relative w-full h-full">
+      {/* Placeholder que se muestra mientras el video carga */}
+      <div
+        className={`absolute inset-0 bg-gray-900 transition-opacity duration-500 ease-in-out ${
+          isVideoLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
+        style={{
+          background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%)',
+        }}
+      >
+        {/* Opcional: añadir un spinner o logo mientras carga */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-12 h-12 border-2 border-white/20 border-t-white/60 rounded-full animate-spin"></div>
+        </div>
+      </div>
+
+      {/* Video principal */}
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload='auto'
+        className={`transition-opacity duration-500 ease-in-out ${
+          isVideoLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{
+          width: '100vw',
+          height: '100vh',
+          objectFit: 'cover',
+        }}
+      >
+        <source src='/dlx-intro.webm' type='video/webm' />
+      </video>
+    </div>
   );
 };
 

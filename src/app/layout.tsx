@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { montserrat, kanit } from '@/assets/fonts';
-import '../assets/styles/globals.css';
-import '@xabimedina/dlx-components/style.css';
 import { unstable_ViewTransition as ViewTransition } from 'react';
+import '@/assets/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'DLX',

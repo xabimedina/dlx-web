@@ -5,6 +5,7 @@ import { Z_INDEX_CLASSES } from '@/constants';
 import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
 import Image from 'next/image';
 import { getProjectsWithMetadata } from '.';
+import { animations, initialStates } from '@/lib/gsap';
 
 export const ProjectItem = ({ 
   project, 
@@ -15,19 +16,22 @@ export const ProjectItem = ({
 }) => {
   // Hooks de animación para cada elemento
   const linkRef = useIntersectionAnimation<HTMLAnchorElement>({
-    animation: 'fadeInUp',
+    initialState: initialStates.fadeInUp,
+    animation: animations.fadeInUp,
     delay: index * 0.1,
     threshold: 0.3,
   });
 
   const paragraphRef = useIntersectionAnimation<HTMLDivElement>({
-    animation: 'fadeInUp',
+    initialState: initialStates.fadeInUp,
+    animation: animations.fadeInUp,
     delay: index * 0.1 + 0.2,
     threshold: 0.3,
   });
 
   const imageRef = useIntersectionAnimation<HTMLDivElement>({
-    animation: 'slideInFromLeft',
+    initialState: initialStates.slideInFromLeft,
+    animation: animations.slideInFromLeft,
     delay: index * 0.1 + 0.4,
     threshold: 0.2,
   });
@@ -38,10 +42,10 @@ export const ProjectItem = ({
       key={`${project.name}-${index}`}
     >
       <article className='h-[80vh]'>
-        <div className='absolute h-6/12 left-30 top-1/2 -translate-y-1/2 space-y-[28%]'>
+        <div className='z-10 absolute h-6/12 left-20 md:left-30 top-1/2 -translate-y-1/2 space-y-[28%]'>
           <DlxLink
             ref={linkRef}
-            className='text-[8rem] tracking-widest uppercase font-bold font-kanit'
+            className='text-6xl md:text-[8rem] tracking-widest uppercase font-bold font-kanit'
             href={`/proyectos/${project.id}`}
           >
             {project.name}
@@ -52,24 +56,26 @@ export const ProjectItem = ({
               color={project.color}
               borderColor={project.borderColor}
             >
-              <p className='max-w-md text-xl mt-24'>
-                {project.description}
+              <p className='max-w-3xs text-lg md:text-xl font-semibold mt-24'>
+                {project.subName}
               </p>
             </DlxParagraph>
           </div>
         </div>
 
         <a
-          href='#'
-          className='w-4/12 h-6/12 absolute -right-0 top-1/2 -translate-y-1/2'
+          href={`/proyectos/${project.id}`}
+          className='w-full md:w-5/12 h-[80vh] absolute -right-0 top-1/2 -translate-y-1/2'
         >
-          <div ref={imageRef} className="w-full h-full">
+          <div ref={imageRef} className="w-full h-full relative">
             <Image
               src={project.portrait}
               alt={`Retrato para el proyecto ${project.name}`}
               className='object-cover'
               fill
             />
+            {/* Overlay solo en móvil */}
+            <div className="absolute inset-0 bg-neutral-400/40 backdrop-blur-xs md:hidden"></div>
           </div>
         </a>
       </article>

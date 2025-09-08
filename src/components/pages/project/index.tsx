@@ -17,57 +17,25 @@ export default function ProjectPage({ project }: { project: Project }) {
         {/* Header */}
         <header className='pt-24 pb-12'>
           <div className='max-w-6xl mx-auto'>
-            <h1 className='text-center text-9xl font-kanit font-bold text-jet tracking-widest'>
+            <h1 className='text-center text-7xl md:text-8xl lg:text-9xl font-kanit font-bold text-jet tracking-widest'>
               {project.name}
             </h1>
           </div>
         </header>
-        <ProjectPortrait image={project.portrait} />
-
-        {/* Project Details */}
-        <section className='px-4 mb-12'>
-          <div className='max-w-7xl mx-auto'>
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-8 text-center'>
-              <div>
-                <h3 className='text-sm font-medium text-jet-foreground mb-2'>
-                  Tipo de Proyecto
-                </h3>
-                <p className='text-lg font-semibold text-jet'>
-                  {project.workType.name}
-                </p>
-              </div>
-              <div>
-                <h3 className='text-sm font-medium text-jet-foreground mb-2'>
-                  Estilo
-                </h3>
-                <p className='text-lg font-semibold text-jet'>
-                  {project.projectStyle.name}
-                </p>
-              </div>
-              <div>
-                <h3 className='text-sm font-medium text-jet-foreground mb-2'>
-                  Ubicación
-                </h3>
-                <p className='text-lg font-semibold text-jet'>
-                  {project.location}
-                </p>
-              </div>
-              <div>
-                <h3 className='text-sm font-medium text-jet-foreground mb-2'>
-                  m²
-                </h3>
-                <p className='text-lg font-semibold text-jet'>{project.area}</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ProjectPortrait info={{
+          workType: project.workType.name,
+          projectStyle: project.projectStyle.name,
+          location: project.location,
+          area: project.area.toString(),
+        }} image={project.portrait} />
 
         {/* Description */}
-        <section className='px-4 mb-12'>
+        <section className='px-4 mb-12 py-12'>
           <div className='max-w-4xl mx-auto'>
-            <p className='text-gray-700 leading-relaxed text-center'>
-              {project.description}
-            </p>
+            <div 
+              className='text-jet leading-relaxed space-y-3 px-2'
+              dangerouslySetInnerHTML={{ __html: project.description }}
+            />
           </div>
         </section>
 
