@@ -10,7 +10,7 @@ export async function getDownloadUrl(filePath: string): Promise<string> {
 
   const options = {
     action: 'read' as const,
-    expires: Date.now() + 1000 * 60 * 60,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // 7 days
   };
 
   try {

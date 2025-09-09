@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { DlxLink } from '../../dlx-link';
 import { ProjectStickyContainer } from '@/components/project-sticky-container';
 import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
@@ -32,12 +33,14 @@ export function ProjectItem({
                    hover:before:opacity-20 
                    before:transition-opacity before:duration-500'
       >
-        <div
-          style={{ backgroundImage: `url(${project.portrait})` }}
-          className='absolute inset-0 h-full w-full bg-cover bg-center 
-                     transition-transform duration-500 ease-in-out 
+        <Image
+          src={project.portrait}
+          alt={`Proyecto ${project.name}`}
+          fill
+          className='object-cover transition-transform duration-500 ease-in-out 
                      group-hover:scale-105'
-        ></div>
+          priority={index < 2}
+        />
 
         <div className='relative z-20 flex flex-col gap-14 justify-center items-center h-full w-full'>
           <h2

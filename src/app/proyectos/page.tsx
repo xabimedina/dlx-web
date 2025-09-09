@@ -1,7 +1,7 @@
 import { getAllProjects } from '@/server/firebase/api';
 import ProjectsPage from '@/components/pages/all-projects';
 
-export const revalidate = 14400; // invalidate every 4 hours
+export const revalidate = 1800; // revalidate every 30 minutes (menos que la expiración de 1 hora)
 
 export default async function Proyectos() {
   const projects = await getAllProjects();

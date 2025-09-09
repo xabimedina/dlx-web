@@ -73,6 +73,7 @@ export const ProjectItem = ({
               alt={`Retrato para el proyecto ${project.name}`}
               className='object-cover'
               fill
+              unoptimized
             />
             {/* Overlay solo en móvil */}
             <div className="absolute inset-0 bg-neutral-400/40 backdrop-blur-xs md:hidden"></div>

@@ -44,6 +44,7 @@ export function ProjectGallery({ images }: { images: string[] }) {
                       alt={`Gallery image ${index + 1}`}
                       fill
                       className='object-cover'
+                      unoptimized
                     />
                   </AspectRatio>
                 </div>

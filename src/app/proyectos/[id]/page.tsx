@@ -2,7 +2,7 @@ import { getAllProjects, getProjectById } from '@/server/firebase/api';
 import { notFound } from 'next/navigation';
 import ProjectPage from '@/components/pages/project';
 
-export const revalidate = 14400;
+export const revalidate = 1800;
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
