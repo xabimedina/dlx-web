@@ -15,7 +15,7 @@ const services = [
     title: 'INTERIORISMO',
     subtitle: "Muebles, colores, textura y alma",
     description:
-      'Una vivienda es estructura. Pero un hogar es ese rincón de lectura con tu manta, esa cocina donde te apetece cocinar o ese salón-comedor adaptado para recibir a tus amigos. Traducimos tus gustos y experiencias en algo tangible, sin fórmulas genéricas ni estilos prefabricados',
+      'Una vivienda es estructura. Pero un hogar es ese rincón de lectura con tu manta, esa cocina donde te apetece cocinar o ese salón adaptado para recibir a tus amigos. Traducimos tus gustos y experiencias en algo tangible, sin fórmulas genéricas ni estilos prefabricados',
   },
   {
     id: 'asesoramiento',
@@ -85,7 +85,7 @@ export function HomeServices() {
         <p
           className='text-xl md:text-5xl lg:text-5xl xl:text-5xl leading-tight font-light'
         >
-          La <span className='animate-pulse'>X</span> no es el problema
+          La <span className='animate-pulse font-black'>X</span> no es el problema
         </p>
         <p className='text-xl md:text-5xl lg:text-5xl xl:text-5xl font-bold '>
           es el inicio de tu nuevo hogar

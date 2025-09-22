@@ -57,14 +57,14 @@ export function HomePortrait() {
             className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-20 text-center sm:text-left'
             style={{ opacity: 0 }} // Estado inicial invisible
           >
-            ESPACIOS PENSADOS HOGARES VÍVIDOS
+            Espacios pensados, hogares vívidos
           </h1>
           <p 
             ref={paragraphRef}
             className='text-base sm:text-lg font-medium max-sm:pl-6'
             style={{ opacity: 0 }} // Estado inicial invisible
           >
-            En despeja la x no buscamos soluciones estándar. Acompañamos tu proceso de reforma en Valencia desde el primer paso hasta el último detalle.
+            En Despeja la X no resolvemos con fórmulas genéricas. Tu reforma en Valencia es una ecuación única: la despejamos contigo, detalle a detalle
           </p>
         </div>
 

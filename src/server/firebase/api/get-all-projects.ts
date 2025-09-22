@@ -5,6 +5,7 @@ import { getDownloadUrl } from '../storage';
 import type { Project } from '@/types/project';
 
 const COLLECTION = 'projects';
+const STARRED_PROJECTS_IDS = ['sAhxxQQQ45cab5wu76bl', 'w0dsQwdUym5BMjDk84Sx', 'YSf9otEJoelmc6sZSMqD']; // Reemplaza con los IDs reales de los proyectos destacados
 
 /**
  * Devuelve un proyecto específico por su ID con las URLs de descarga
@@ -67,7 +68,7 @@ export async function getAllProjects(): Promise<Project[]> {
 
 export async function getPortraitProjects(): Promise<Project[]> {
   try {
-    const snapshot = await db.collection(COLLECTION).limit(3).get();
+    const snapshot = await db.collection(COLLECTION).get();
 
     const projectPromises = snapshot.docs.map(async doc => {
       const raw = doc.data() as Omit<Project, 'images' | 'portrait'> & {
@@ -83,7 +84,19 @@ export async function getPortraitProjects(): Promise<Project[]> {
       return { ...raw, images, portrait } as Project;
     });
 
-    return await Promise.all(projectPromises);
+    const projects = await Promise.all(projectPromises);
+    const starredProjects = projects.filter(project => STARRED_PROJECTS_IDS.includes(project.id));
+
+    const starredIds = new Set(starredProjects.map(project => project.id));
+    if (starredProjects.length < 3) {
+      const additionalProjects = projects
+        .filter(project => !starredIds.has(project.id))
+        .slice(0, 3 - starredProjects.length);
+      starredProjects.push(...additionalProjects);
+    }
+    
+    return starredProjects;
+
   } catch (err) {
     console.error('[getAllProjects] Error:', err);
     throw new Error('No se pudieron obtener los proyectos');

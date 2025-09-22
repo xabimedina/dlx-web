@@ -10,12 +10,12 @@ export const ContactSection = () => {
           {/* Left Column - Calculator */}
             <div className='space-y-6 max-w-md'>
               <h2 className='text-3xl md:text-4xl font-bold text-jet font-kanit leading-tight'>
-                CALCULA TU
+                CALCULADORA DE
                 <br />
                 PROYECTO
               </h2>
               <p className='text-gray-600 leading-relaxed'>
-                Descubre en minutos un estimado del coste para una reforma a través de 8 preguntas sencillas
+                Descubre en minutos cuánto puede costar una reforma respondiendo solo 8 preguntas sencillas
               </p>
               <Button variant="accent">
                 Calcula tu presupuesto
@@ -31,7 +31,7 @@ export const ContactSection = () => {
             />
             <ServiceBlock
               title='ASESORAMIENTO'
-              description='¿Has encontrado un piso, chalet o casa con potencial y te preguntas si es el lugar perfecto para ti? Te ofrecemos nuestro acompañamiento para que resuelvas tus dudas y tomes la mejor decisión.'
+              description='¿Has encontrado un piso, chalet o casa con potencial pero no estás seguro? Te ayudamos a despejar dudas para que tomes la mejor decisión.'
               buttonText='Quiero asesoramiento'
             />
           </div>
