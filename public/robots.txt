@@ -1,0 +1,27 @@
+# Robots.txt for DLX Web - Estudio de Arquitectura e Interiorismo
+# https://www.despejalax.com
+
+User-agent: *
+Allow: /
+Allow: /proyectos
+Allow: /proyectos/*
+
+# Assets and static files
+Allow: /brand/
+Allow: /images/
+Allow: /*.webm
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.svg
+
+# Block non-essential files
+Disallow: /_next/static/
+Disallow: /api/
+Disallow: /*.json$
+
+# Crawl delay
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://www.despejalax.com/sitemap.xml
