@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
 import { animations, initialStates } from '@/lib/gsap';
+import { BLUR_DATA_URL } from '@/constants';
 
 const services = [
   {
@@ -110,6 +111,8 @@ export function HomeServices() {
                 fill
                 className='object-cover rounded-r-xs'
                 sizes='(max-width: 768px) 100vw, 50vw'
+                placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
               />
 
               <span

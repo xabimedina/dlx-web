@@ -7,6 +7,7 @@ import { useState } from 'react';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import { X } from 'lucide-react';
+import { BLUR_DATA_URL } from '@/constants';
 
 export function ProjectGallery({ images }: { images: string[] }) {
   const [showLightbox, setShowLightbox] = useState(false);
@@ -33,8 +34,8 @@ export function ProjectGallery({ images }: { images: string[] }) {
               const { aspectRatio, gridClass } = GALLERY_MAP_STYLES[patternIndex];
 
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className={`${gridClass} cursor-pointer hover:opacity-90 transition-opacity`}
                   onClick={() => handleImageClick(index)}
                 >
@@ -45,6 +46,8 @@ export function ProjectGallery({ images }: { images: string[] }) {
                       fill
                       className='object-cover'
                       unoptimized
+                      placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
                     />
                   </AspectRatio>
                 </div>
@@ -74,7 +77,7 @@ export function ProjectGallery({ images }: { images: string[] }) {
           >
             <X />
           </button>
-        </div> 
+        </div>
       )}
     </>
   );

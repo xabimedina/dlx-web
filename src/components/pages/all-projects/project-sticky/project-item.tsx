@@ -7,13 +7,14 @@ import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
 import { Z_INDEX_CLASSES } from '@/constants';
 import { getProjectsWithMetadata } from '.';
 import { animations, initialStates } from '@/lib/gsap';
+import { BLUR_DATA_URL } from '@/constants';
 // Componente individual para cada proyecto con animaciones
-export function ProjectItem({ 
-  project, 
-  index 
-}: { 
-  project: ReturnType<typeof getProjectsWithMetadata>[number], 
-  index: number 
+export function ProjectItem({
+  project,
+  index
+}: {
+  project: ReturnType<typeof getProjectsWithMetadata>[number],
+  index: number
 }) {
 
   const titleRef = useIntersectionAnimation<HTMLHeadingElement>({
@@ -40,6 +41,8 @@ export function ProjectItem({
           className='object-cover transition-transform duration-500 ease-in-out 
                      group-hover:scale-105'
           priority={index < 2}
+          placeholder="blur"
+    blurDataURL={BLUR_DATA_URL}
         />
 
         <div className='relative z-20 flex flex-col gap-14 justify-center items-center h-full w-full'>

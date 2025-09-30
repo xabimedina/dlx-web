@@ -6,12 +6,13 @@ import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
 import Image from 'next/image';
 import { getProjectsWithMetadata } from '.';
 import { animations, initialStates } from '@/lib/gsap';
+import { BLUR_DATA_URL } from '@/constants';
 
-export const ProjectItem = ({ 
-  project, 
-  index 
-}: { 
-  project: ReturnType<typeof getProjectsWithMetadata>[0]; 
+export const ProjectItem = ({
+  project,
+  index
+}: {
+  project: ReturnType<typeof getProjectsWithMetadata>[0];
   index: number;
 }) => {
   // Hooks de animación para cada elemento
@@ -50,7 +51,7 @@ export const ProjectItem = ({
           >
             {project.name}
           </DlxLink>
-          
+
           <div ref={paragraphRef}>
             <DlxParagraph
               color={project.color}
@@ -74,6 +75,8 @@ export const ProjectItem = ({
               className='object-cover'
               fill
               unoptimized
+              placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
             />
             {/* Overlay solo en móvil */}
             <div className="absolute inset-0 bg-neutral-400/40 backdrop-blur-xs md:hidden"></div>

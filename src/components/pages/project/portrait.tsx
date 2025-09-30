@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { BLUR_DATA_URL } from '@/constants';
 
 interface ProjectPortraitProps {
   image: string;
@@ -56,6 +57,8 @@ export function ProjectPortrait({ image, info }: ProjectPortraitProps) {
           alt='Retrato para el proyecto'
           fill
           className='object-cover'
+          placeholder="blur"
+    blurDataURL={BLUR_DATA_URL}
         />
       </div>
       <section className='absolute bottom-2.5 left-1/2 transform -translate-x-1/2 px-12 mb-12 w-fit backdrop-blur-sm bg-white/10 py-6 rounded-sm shadow-2xl border border-white/20'>
