@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
+import { ViewTransition } from 'react';
 import { montserrat, kanit } from '@/assets/fonts';
-import { unstable_ViewTransition as ViewTransition } from 'react';
 import '@/assets/styles/globals.css';
 
 export const metadata: Metadata = {
