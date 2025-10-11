@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { ViewTransition } from 'react';
 import { montserrat, kanit } from '@/assets/fonts';
 import '@/assets/styles/globals.css';
 
@@ -90,7 +89,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
       <body className={`${montserrat.variable} ${kanit.variable} antialiased `}>
-        <ViewTransition name='page'>{children}</ViewTransition>
+        {children}
       </body>
     </html>
   );
