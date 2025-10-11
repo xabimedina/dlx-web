@@ -42,7 +42,7 @@ export default function ProjectPage({ project }: { project: Project }) {
         <ProjectGallery images={project.images} />
       </main>
       <ContactSection />
-      <DlxFooter />
+      <DlxFooter showSocialMedia={false} />
     </>
   );
 }

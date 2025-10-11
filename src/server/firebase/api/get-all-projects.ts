@@ -59,7 +59,7 @@ export async function getAllProjects(): Promise<Project[]> {
       return { ...raw, images, portrait } as Project;
     });
 
-    return await Promise.all(projectPromises);
+    return (await Promise.all(projectPromises)).reverse();
   } catch (err) {
     console.error('[getAllProjects] Error:', err);
     throw new Error('No se pudieron obtener los proyectos');

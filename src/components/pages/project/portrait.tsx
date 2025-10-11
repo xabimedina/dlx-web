@@ -61,7 +61,7 @@ export function ProjectPortrait({ image, info }: ProjectPortraitProps) {
     blurDataURL={BLUR_DATA_URL}
         />
       </div>
-      <section className='absolute bottom-2.5 left-1/2 transform -translate-x-1/2 px-12 mb-12 w-fit backdrop-blur-sm bg-white/10 py-6 rounded-sm shadow-2xl border border-white/20'>
+      <section className='absolute bottom-2.5 left-1/2 transform -translate-x-1/2 px-12 mb-12 w-fit backdrop-blur-sm bg-slate-800/10 py-6 rounded-sm shadow-2xl border border-white/20'>
         <div className='relative max-md:w-screen grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-14 lg:gap-12 text-center'>
           {[
             { label: 'Tipo', value: info.workType },

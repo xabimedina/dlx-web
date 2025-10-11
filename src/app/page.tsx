@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 export const revalidate = 14400; // invalidate every 4 hours
 
 export const metadata: Metadata = {
-  title: 'Inicio - Estudio de Arquitectura e Interiorismo',
+  title: 'Despeja la X | Estudio de Arquitectura e Interiorismo',
   description: 'Descubre nuestros proyectos de arquitectura e interiorismo. Diseñamos espacios únicos que reflejan tu personalidad y estilo de vida.',
   keywords: 'estudio arquitectura, diseño interior, proyectos residenciales, reforma hogar, arquitectura contemporánea',
   openGraph: {

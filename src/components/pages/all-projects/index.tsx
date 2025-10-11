@@ -24,7 +24,7 @@ export default function ProjectsPage({
         <p className='max-w-2xl text-sm sm:text-base md:text-lg text-pretty px-6'>Cada proyecto une diseño funcional con atención al detalle, creando hogares que responden a la vida real de quienes lo habitan.</p>
       </main>
       <AllProjects projects={projects} />
-      <DlxFooter />
+      <DlxFooter showSocialMedia={false} />
     </>
   );
 }

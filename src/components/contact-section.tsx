@@ -17,9 +17,11 @@ export const ContactSection = () => {
               <p className='text-gray-600 leading-relaxed'>
                 Descubre en minutos cuánto puede costar una reforma respondiendo solo 8 preguntas sencillas
               </p>
-              <Button variant="accent">
-                Calcula tu presupuesto
-              </Button>
+              <a href='https://calculadora.despejalax.com' target='_blank' rel='noopener noreferrer'>
+                <Button variant="accent">
+                  Calcula tu presupuesto
+                </Button>
+              </a>
             </div>
 
           {/* Right Column - Services */}
@@ -38,7 +40,7 @@ export const ContactSection = () => {
         </div>
 
         {/* Contact Information */}
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8 text-center mb-16'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 text-center mb-16'>
           <ContactInfo
             title='CORREO'
             value='INFO@DESPEJALAX.COM'
@@ -46,13 +48,13 @@ export const ContactSection = () => {
           />
           <ContactInfo
             title='TELÉFONO'
-            value='123 456 789'
-            link='tel:123456789'
+            value='+34 607 24 58 86'
+            link='https://wa.me/34607245886?text=Hola%20quiero%20más%20información%20sobre%20los%20servicios%20de%20reforma%20y%20arquitectura'
           />
-          <ContactInfo
+         {/*  <ContactInfo
             title='REDES SOCIALES'
             value='@DESPEJALAX'
-          />
+          /> */}
         </div>
 
       </div>
