@@ -43,7 +43,7 @@ export async function getProjectById(id: string): Promise<Project | null> {
  */
 export async function getAllProjects(): Promise<Project[]> {
   try {
-    const snapshot = await db.collection(COLLECTION).get();
+    const snapshot = await db.collection(COLLECTION).where('showProject', '==', true).get();
 
     const projectPromises = snapshot.docs.map(async doc => {
       const raw = doc.data() as Omit<Project, 'images' | 'portrait'> & {
