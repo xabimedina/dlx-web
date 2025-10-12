@@ -59,24 +59,75 @@ interface ProjectType {
   workType: { name: string };
   projectStyle: { name: string };
   location: string;
+  id: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
+
+// Breadcrumb schema interface
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
+  const breadcrumbItems = [
+    { name: 'Inicio', url: '/' },
+    ...items
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbItems.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": `https://www.despejalax.com${item.url}`
+    }))
+  };
 }
 
 export function generateProjectSchema(project: ProjectType) {
+  const datePublished = project.createdAt 
+    ? (project.createdAt instanceof Date ? project.createdAt.toISOString() : project.createdAt)
+    : new Date().toISOString();
+  
+  const dateModified = project.updatedAt 
+    ? (project.updatedAt instanceof Date ? project.updatedAt.toISOString() : project.updatedAt)
+    : new Date().toISOString();
+
   return {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": project.name,
+    "@type": "Article",
+    "headline": project.name,
     "description": project.description.replace(/<[^>]*>/g, '').substring(0, 200),
-    "image": project.portrait,
-    "creator": {
+    "image": {
+      "@type": "ImageObject",
+      "url": project.portrait,
+      "width": 1200,
+      "height": 630,
+      "caption": `${project.name} - ${project.workType.name} ${project.projectStyle.name}`
+    },
+    "datePublished": datePublished,
+    "dateModified": dateModified,
+    "author": {
       "@type": "Organization",
-      "name": "Despeja la X"
+      "name": "Despeja la X",
+      "url": "https://www.despejalax.com"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Despeja la X"
+      "name": "Despeja la X",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.despejalax.com/brand/dlx-logo-black.png"
+      }
     },
-    "dateCreated": "2025",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.despejalax.com/proyectos/${project.id}`
+    },
     "genre": `${project.workType.name} ${project.projectStyle.name}`,
     "locationCreated": {
       "@type": "Place",
@@ -84,3 +135,23 @@ export function generateProjectSchema(project: ProjectType) {
     }
   };
 }
+
+// LocalBusiness schema para mejor SEO local
+export const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://www.despejalax.com#contacto",
+  "name": "Despeja la X",
+  "image": "https://www.despejalax.com/brand/dlx-logo-black.png",
+  "description": "Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos",
+  "url": "https://www.despejalax.com",
+  "priceRange": "€€€",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "ES"
+  },
+  "sameAs": [
+    "https://instagram.com/despejalax",
+    "https://www.linkedin.com/company/despejalax/"
+  ]
+};

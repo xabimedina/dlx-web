@@ -1,27 +1,40 @@
-# Robots.txt for DLX Web - Estudio de Arquitectura e Interiorismo
+# Robots.txt optimizado - Despeja la X
 # https://www.despejalax.com
 
 User-agent: *
 Allow: /
-Allow: /proyectos
-Allow: /proyectos/*
+Allow: /proyectos/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.svg$
 
-# Assets and static files
-Allow: /brand/
-Allow: /images/
-Allow: /*.webm
-Allow: /*.png
-Allow: /*.jpg
-Allow: /*.jpeg
-Allow: /*.svg
-
-# Block non-essential files
+# Bloquear recursos innecesarios
 Disallow: /_next/static/
+Disallow: /_next/image/
 Disallow: /api/
+Disallow: /*?*utm_*
+Disallow: /*?*fbclid=*
 Disallow: /*.json$
 
-# Crawl delay
+# Bots específicos - Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Googlebot para imágenes
+User-agent: Googlebot-Image
+Allow: /brand/
+Allow: /images/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+
+
+# Crawl delay general
 Crawl-delay: 1
 
-# Sitemap
+# Sitemaps
 Sitemap: https://www.despejalax.com/sitemap.xml

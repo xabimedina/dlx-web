@@ -1,6 +1,8 @@
 import { getAllProjects, getProjectById } from '@/server/firebase/api';
 import { notFound } from 'next/navigation';
 import ProjectPage from '@/components/pages/project';
+import { StructuredData, generateProjectSchema, generateBreadcrumbSchema } from '@/components/structured-data';
+
 import type { Metadata } from 'next';
 
 export const revalidate = 1800;
@@ -74,8 +76,15 @@ export default async function Proyecto({
     return notFound();
   }
 
+  const breadcrumbItems = [
+    { name: 'Proyectos', url: '/proyectos' },
+    { name: project.name, url: `/proyectos/${project.id}` }
+  ];
+
   return (
     <>
+      <StructuredData data={generateProjectSchema(project)} />
+      <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
       <ProjectPage project={project} />
     </>
   );

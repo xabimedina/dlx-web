@@ -1,6 +1,6 @@
 import { HomePage } from '@/components/pages/home';
 import { getPortraitProjects } from '@/server/firebase/api';
-import { StructuredData, organizationSchema, websiteSchema } from '@/components/structured-data';
+import { StructuredData, organizationSchema, websiteSchema, localBusinessSchema } from '@/components/structured-data';
 import type { Metadata } from 'next';
 
 export const revalidate = 14400; // invalidate every 4 hours
@@ -47,6 +47,7 @@ export default async function Inicio() {
     <>
       <StructuredData data={organizationSchema} />
       <StructuredData data={websiteSchema} />
+      <StructuredData data={localBusinessSchema} />
       <HomePage portraitProjects={portraitProjects} />
     </>
   );

@@ -1,5 +1,7 @@
 import { getAllProjects } from '@/server/firebase/api';
 import ProjectsPage from '@/components/pages/all-projects';
+import { StructuredData, generateBreadcrumbSchema } from '@/components/structured-data';
+
 import type { Metadata } from 'next';
 
 export const revalidate = 1800; // revalidate every 30 minutes (menos que la expiración de 1 hora)
@@ -42,5 +44,14 @@ export default async function Proyectos() {
     subName: project.subName,
   }));
 
-  return <ProjectsPage projects={portraitProjects} />;
+  const breadcrumbItems = [
+    { name: 'Proyectos', url: '/proyectos' }
+  ];
+
+  return (
+    <>
+      <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
+      <ProjectsPage projects={portraitProjects} />
+    </>
+  );
 }
