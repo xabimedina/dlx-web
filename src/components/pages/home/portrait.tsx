@@ -8,7 +8,7 @@ export function HomePortrait() {
   // Referencias para los elementos que queremos animar
   const titleRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const buttonWrapperRef = useRef<HTMLDivElement>(null);
+  const buttonWrapperRef = useRef<HTMLAnchorElement>(null);
   
   // Estado para controlar cuando el video está cargado
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -68,7 +68,8 @@ export function HomePortrait() {
           </p>
         </div>
 
-        <div 
+        <a
+          href='https://calculadora.despejalax.com/'
           ref={buttonWrapperRef}
           className='w-full flex justify-center'
           style={{ opacity: 0 }} // Estado inicial invisible
@@ -79,7 +80,7 @@ export function HomePortrait() {
           >
             Calcula tu presupuesto
           </Button>
-        </div>
+        </a>
       </div>
     </div>
   );
