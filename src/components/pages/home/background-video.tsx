@@ -6,7 +6,7 @@ interface BackgroundVideoProps {
 }
 
 const BackgroundVideo = ({ onVideoLoaded }: BackgroundVideoProps) => {
-  const { videoRef, isVideoLoaded } = useVideo();
+  const { videoRef, isVideoLoaded, hasError } = useVideo();
 
   useEffect(() => {
     if (isVideoLoaded && onVideoLoaded) {
@@ -49,7 +49,17 @@ const BackgroundVideo = ({ onVideoLoaded }: BackgroundVideoProps) => {
         }}
       >
         <source src='/dlx-intro.webm' type='video/webm' />
+        {/* Fallback for browsers that don't support WebM */}
+        <source src='/dlx-intro-video.mp4' type='video/mp4' />
       </video>
+
+      {/* Fallback static image if video fails completely */}
+      {hasError && (
+        <div 
+          className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black"
+          aria-label="Background gradient"
+        />
+      )}
     </div>
   );
 };

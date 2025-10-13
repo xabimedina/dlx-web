@@ -3,42 +3,87 @@ import { useEffect, useRef, useState } from 'react';
 export const useVideo = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+    const [hasError, setHasError] = useState(false);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
 
+        let isLoaded = false;
+
         const handleCanPlay = () => {
-            setIsVideoLoaded(true);
+            if (!isLoaded) {
+                isLoaded = true;
+                setIsVideoLoaded(true);
+                setHasError(false);
+                if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current);
+                }
+            }
         };
 
         const handleLoadedData = () => {
-            setIsVideoLoaded(true);
+            if (!isLoaded) {
+                isLoaded = true;
+                setIsVideoLoaded(true);
+                setHasError(false);
+                if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current);
+                }
+            }
         };
 
-        const handleLoadStart = () => {
-            setIsVideoLoaded(false);
+        const handleError = () => {
+            console.error('Video failed to load');
+            setHasError(true);
+            setIsVideoLoaded(true); // Hide loader even on error
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
         };
 
-        // Agregar listeners para detectar cuando el video está listo
+        const handleStalled = () => {
+            console.warn('Video loading stalled');
+        };
+
+        // Timeout fallback: if video doesn't load in 10 seconds, show content anyway
+        timeoutRef.current = setTimeout(() => {
+            if (!isLoaded) {
+                console.warn('Video loading timeout - showing content anyway');
+                setIsVideoLoaded(true);
+            }
+        }, 10000);
+
+        // Add event listeners
         video.addEventListener('canplay', handleCanPlay);
         video.addEventListener('loadeddata', handleLoadedData);
-        video.addEventListener('loadstart', handleLoadStart);
+        video.addEventListener('error', handleError);
+        video.addEventListener('stalled', handleStalled);
 
-        // Si el video ya está cargado, ejecutar inmediatamente
+        // Check if video is already loaded
         if (video.readyState >= 3) {
+            isLoaded = true;
             setIsVideoLoaded(true);
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
         }
 
         return () => {
             video.removeEventListener('canplay', handleCanPlay);
             video.removeEventListener('loadeddata', handleLoadedData);
-            video.removeEventListener('loadstart', handleLoadStart);
+            video.removeEventListener('error', handleError);
+            video.removeEventListener('stalled', handleStalled);
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
         };
     }, []);
 
     return {
         videoRef,
         isVideoLoaded,
+        hasError,
     };
 };
