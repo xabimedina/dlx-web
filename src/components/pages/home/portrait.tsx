@@ -69,7 +69,7 @@ export function HomePortrait() {
         </div>
 
         <a
-          href='https://calculadora.despejalax.com/'
+          href='https://calculadora.despejalax.es/'
           ref={buttonWrapperRef}
           className='w-full flex justify-center'
           style={{ opacity: 0 }} // Estado inicial invisible

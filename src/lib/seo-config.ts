@@ -1,6 +1,6 @@
 // SEO Configuration for DLX Web
 export const seoConfig = {
-  baseUrl: 'https://www.despejalax.com',
+  baseUrl: 'https://www.despejalax.es',
   siteName: 'Despeja la X - Estudio de Arquitectura e Interiorismo',
   defaultTitle: 'Despeja la X - Estudio de Arquitectura e Interiorismo',
   defaultDescription: 'Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos. Transformamos espacios con diseño contemporáneo y funcional.',

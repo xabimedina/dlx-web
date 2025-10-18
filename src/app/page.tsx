@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Despeja la X - Proyectos de Arquitectura e Interiorismo',
     description: 'Descubre nuestros proyectos únicos de arquitectura e interiorismo que transforman espacios.',
-    url: 'https://www.despejalax.com',
+    url: 'https://www.despejalax.es',
     images: [
       {
         url: '/brand/dlx-logo-black.png',

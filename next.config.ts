@@ -76,6 +76,42 @@ const nextConfig: NextConfig = {
   // Redirects SEO para mantener URLs limpias
   async redirects() {
     return [
+      // Redirección de dominio .com a .es
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'despejalax.com',
+          },
+        ],
+        destination: 'https://www.despejalax.es/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.despejalax.com',
+          },
+        ],
+        destination: 'https://www.despejalax.es/:path*',
+        permanent: true,
+      },
+      // Redirección sin www a www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'despejalax.es',
+          },
+        ],
+        destination: 'https://www.despejalax.es/:path*',
+        permanent: true,
+      },
+      // URLs limpias
       {
         source: '/proyectos/',
         destination: '/proyectos',

@@ -1,22 +1,15 @@
 # Robots.txt optimizado - Despeja la X
-# https://www.despejalax.com
+# https://www.despejalax.es
 
 User-agent: *
 Allow: /
+Allow: /proyectos
 Allow: /proyectos/
-Allow: /*.webp$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.png$
-Allow: /*.svg$
-
-# Bloquear recursos innecesarios
 Disallow: /_next/static/
 Disallow: /_next/image/
 Disallow: /api/
 Disallow: /*?*utm_*
 Disallow: /*?*fbclid=*
-Disallow: /*.json$
 
 # Bots específicos - Googlebot
 User-agent: Googlebot
@@ -25,16 +18,14 @@ Crawl-delay: 0
 
 # Googlebot para imágenes
 User-agent: Googlebot-Image
-Allow: /brand/
-Allow: /images/
+Allow: /
 Allow: /*.webp$
 Allow: /*.jpg$
 Allow: /*.jpeg$
 Allow: /*.png$
 
-
 # Crawl delay general
 Crawl-delay: 1
 
 # Sitemaps
-Sitemap: https://www.despejalax.com/sitemap.xml
+Sitemap: https://www.despejalax.es/sitemap.xml

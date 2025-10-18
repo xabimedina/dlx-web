@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Proyectos - Portafolio Despeja la X',
     description: 'Explora nuestro portafolio completo de proyectos de arquitectura e interiorismo únicos.',
-    url: 'https://www.despejalax.com/proyectos',
+    url: 'https://www.despejalax.es/proyectos',
     images: [
       {
         url: '/images/portada.jpg',

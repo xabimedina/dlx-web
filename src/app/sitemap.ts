@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getAllProjects } from '@/server/firebase/api';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://www.despejalax.com';
+  const baseUrl = 'https://www.despejalax.es';
   
   // Rutas estáticas
   const staticRoutes: MetadataRoute.Sitemap = [

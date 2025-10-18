@@ -23,12 +23,12 @@ export const organizationSchema = {
   "@type": "Organization",
   "name": "Despeja la X",
   "description": "Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos",
-  "url": "https://www.despejalax.com",
-  "logo": "https://www.despejalax.com/brand/dlx-logo-black.png",
+  "url": "https://www.despejalax.es",
+  "logo": "https://www.despejalax.es/brand/dlx-logo-black.png",
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "Customer Service",
-    "url": "https://www.despejalax.com#contacto"
+    "url": "https://www.despejalax.es#contacto"
   },
   "sameAs": [
     "https://instagram.com/despejalax",
@@ -45,7 +45,7 @@ export const websiteSchema = {
   "@type": "WebSite",
   "name": "Despeja la X",
   "description": "Estudio de arquitectura e interiorismo",
-  "url": "https://www.despejalax.com",
+  "url": "https://www.despejalax.es",
   "publisher": {
     "@type": "Organization",
     "name": "Despeja la X"
@@ -83,7 +83,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": `https://www.despejalax.com${item.url}`
+      "item": `https://www.despejalax.es${item.url}`
     }))
   };
 }
@@ -114,19 +114,19 @@ export function generateProjectSchema(project: ProjectType) {
     "author": {
       "@type": "Organization",
       "name": "Despeja la X",
-      "url": "https://www.despejalax.com"
+      "url": "https://www.despejalax.es"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Despeja la X",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.despejalax.com/brand/dlx-logo-black.png"
+        "url": "https://www.despejalax.es/brand/dlx-logo-black.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.despejalax.com/proyectos/${project.id}`
+      "@id": `https://www.despejalax.es/proyectos/${project.id}`
     },
     "genre": `${project.workType.name} ${project.projectStyle.name}`,
     "locationCreated": {
@@ -140,11 +140,11 @@ export function generateProjectSchema(project: ProjectType) {
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://www.despejalax.com#contacto",
+  "@id": "https://www.despejalax.es#contacto",
   "name": "Despeja la X",
-  "image": "https://www.despejalax.com/brand/dlx-logo-black.png",
+  "image": "https://www.despejalax.es/brand/dlx-logo-black.png",
   "description": "Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos",
-  "url": "https://www.despejalax.com",
+  "url": "https://www.despejalax.es",
   "priceRange": "€€€",
   "address": {
     "@type": "PostalAddress",

@@ -41,7 +41,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${project.name} - Proyecto de ${project.workType.name}`,
       description: `${project.workType.name} en ${project.location}. ${cleanDescription}`,
-      url: `https://www.despejalax.com/proyectos/${project.id}`,
+      url: `https://www.despejalax.es/proyectos/${project.id}`,
       images: [
         {
           url: project.portrait,

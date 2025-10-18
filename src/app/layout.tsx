@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   authors: [{ name: 'Despeja la X' }],
   creator: 'Despeja la X',
   publisher: 'Despeja la X',
-  metadataBase: new URL('https://www.despejalax.com'),
+  metadataBase: new URL('https://www.despejalax.es'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://www.despejalax.com',
+    url: 'https://www.despejalax.es',
     siteName: 'Despeja la X',
     title: 'Despeja la X - Estudio de Arquitectura e Interiorismo',
     description: 'Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos. Transformamos espacios con diseño contemporáneo y funcional.',

@@ -126,7 +126,7 @@ export async function GET(request: NextRequest) {
                 fontFamily: 'system-ui',
               }}
             >
-              www.despejalax.com
+              www.despejalax.es
             </span>
             <div
               style={{

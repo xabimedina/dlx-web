@@ -17,7 +17,7 @@ export const ContactSection = () => {
               <p className='text-gray-600 leading-relaxed'>
                 Descubre en minutos cuánto puede costar una reforma respondiendo solo 8 preguntas sencillas
               </p>
-              <a href='https://calculadora.despejalax.com' target='_blank' rel='noopener noreferrer'>
+              <a href='https://calculadora.despejalax.es' target='_blank' rel='noopener noreferrer'>
                 <Button variant="accent">
                   Calcula tu presupuesto
                 </Button>
