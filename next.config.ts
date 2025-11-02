@@ -124,6 +124,21 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // PostHog rewrites to support ingest endpoints
+  async rewrites() {
+    return [
+      {
+        source: '/ingest/static/:path*',
+        destination: 'https://eu-assets.i.posthog.com/static/:path*',
+      },
+      {
+        source: '/ingest/:path*',
+        destination: 'https://eu.i.posthog.com/:path*',
+      },
+    ];
+  },
+  // This is required to support PostHog trailing slash API requests
+  skipTrailingSlashRedirect: true,
   // Comprimir archivos estáticos
   compress: true,
   // PWA y Service Worker ready

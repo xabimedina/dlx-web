@@ -1,8 +1,12 @@
 'use client';
 import { Button } from '@xabimedina/dlx-components';
 import { DlxLink } from '@xabimedina/dlx-components';
+import { useTrackCalculatorCTA, useTrackContact } from '@/lib/posthog';
 
 export const ContactSection = () => {
+  const { trackCalculatorClick } = useTrackCalculatorCTA();
+  const { trackContactClick } = useTrackContact();
+
   return (
     <section id='contacto' className='bg-smoke py-24'>
       <div className='max-w-6xl mx-auto px-6'>
@@ -17,7 +21,12 @@ export const ContactSection = () => {
               <p className='text-gray-600 leading-relaxed'>
                 Descubre en minutos cuánto puede costar una reforma respondiendo solo 8 preguntas sencillas
               </p>
-              <a href='https://calculadora.despejalax.es' target='_blank' rel='noopener noreferrer'>
+              <a 
+                href='https://calculadora.despejalax.es' 
+                target='_blank' 
+                rel='noopener noreferrer'
+                onClick={() => trackCalculatorClick('contact-section')}
+              >
                 <Button variant="accent">
                   Calcula tu presupuesto
                 </Button>
@@ -30,11 +39,15 @@ export const ContactSection = () => {
               title='INTERIORISMO'
               description='¿Quieres que el diseño de tu casa refleje tu esencia y se convierta en el hogar de tus sueños? Te asesoramos y acompañamos en cada paso de esta transformación.'
               buttonText='Estoy interesadx'
+              service='interiorismo'
+              onContactClick={trackContactClick}
             />
             <ServiceBlock
               title='ASESORAMIENTO'
               description='¿Has encontrado un piso, chalet o casa con potencial pero no estás seguro? Te ayudamos a despejar dudas para que tomes la mejor decisión.'
               buttonText='Quiero asesoramiento'
+              service='asesoramiento'
+              onContactClick={trackContactClick}
             />
           </div>
         </div>
@@ -45,11 +58,13 @@ export const ContactSection = () => {
             title='CORREO'
             value='INFO@DESPEJALAX.COM'
             link='mailto:info@despejalax.com'
+            onContactClick={() => trackContactClick('email')}
           />
           <ContactInfo
             title='TELÉFONO'
             value='+34 607 24 58 86'
             link='https://wa.me/34607245886?text=Hola%20quiero%20más%20información%20sobre%20los%20servicios%20de%20reforma%20y%20arquitectura'
+            onContactClick={() => trackContactClick('whatsapp')}
           />
          {/*  <ContactInfo
             title='REDES SOCIALES'
@@ -66,10 +81,14 @@ const ServiceBlock = ({
   title,
   description,
   buttonText,
+  service,
+  onContactClick,
 }: {
   title: string;
   description: string;
   buttonText: string;
+  service: string;
+  onContactClick: (type: 'email' | 'phone' | 'whatsapp', service?: string) => void;
 }) => {
   return (
     <div className='space-y-4'>
@@ -79,7 +98,10 @@ const ServiceBlock = ({
       <p className='text-gray-600 leading-relaxed'>
         {description}
       </p>
-      <a href='mailto:info@despejalax.com'>
+      <a 
+        href='mailto:info@despejalax.com'
+        onClick={() => onContactClick('email', service)}
+      >
         <Button className='bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-2 rounded-full text-sm'>
           {buttonText}
         </Button>
@@ -92,10 +114,12 @@ const ContactInfo = ({
   title,
   value,
   link,
+  onContactClick,
 }: {
   title: string;
   value: string;
   link?: string;
+  onContactClick?: () => void;
 }) => {
   return (
     <div className='space-y-2'>
@@ -103,7 +127,11 @@ const ContactInfo = ({
         {title}
       </p>
       {link ? (
-        <DlxLink href={link} className='text-lg font-bold text-jet block'>
+        <DlxLink 
+          href={link} 
+          className='text-lg font-bold text-jet block'
+          onClick={onContactClick}
+        >
           {value}
         </DlxLink>
       ) : (

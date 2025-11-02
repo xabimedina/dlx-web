@@ -1,8 +1,10 @@
+'use client';
 import { DlxParagraph } from '@xabimedina/dlx-components';
 import { ProjectStickyContainer } from '@/components/project-sticky-container';
 import { DlxLink } from '@/components/pages/dlx-link';
 import { Z_INDEX_CLASSES } from '@/constants';
 import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
+import { useTrackProjectClick } from '@/lib/posthog';
 import Image from 'next/image';
 import { getProjectsWithMetadata } from '.';
 import { animations, initialStates } from '@/lib/gsap';
@@ -15,6 +17,8 @@ export const ProjectItem = ({
   project: ReturnType<typeof getProjectsWithMetadata>[0];
   index: number;
 }) => {
+  const { trackProjectClick } = useTrackProjectClick();
+
   // Hooks de animación para cada elemento
   const linkRef = useIntersectionAnimation<HTMLAnchorElement>({
     initialState: initialStates.fadeInUp,
@@ -37,6 +41,10 @@ export const ProjectItem = ({
     threshold: 0.2,
   });
 
+  const handleProjectClick = () => {
+    trackProjectClick(project.id, project.name, 'homepage');
+  };
+
   return (
     <ProjectStickyContainer
       className={`${Z_INDEX_CLASSES[index] ?? 'z-50'} ${project.background}`}
@@ -48,6 +56,7 @@ export const ProjectItem = ({
             ref={linkRef}
             className='text-6xl md:text-[8rem] tracking-widest uppercase font-bold font-kanit'
             href={`/proyectos/${project.id}`}
+            onClick={handleProjectClick}
           >
             {project.name}
           </DlxLink>
@@ -67,6 +76,7 @@ export const ProjectItem = ({
         <a
           href={`/proyectos/${project.id}`}
           className='w-full md:w-5/12 h-[80vh] absolute -right-0 top-1/2 -translate-y-1/2'
+          onClick={handleProjectClick}
         >
           <div ref={imageRef} className="w-full h-full relative">
             <Image
