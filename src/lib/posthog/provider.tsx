@@ -3,18 +3,21 @@
 import posthog from 'posthog-js';
 import { PostHogProvider } from 'posthog-js/react';
 import { useEffect } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 if (typeof window !== 'undefined') {
-  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
-    person_profiles: 'identified_only',
-    capture_pageview: false, // We'll capture pageviews manually
-    capture_pageleave: true,
-    loaded: (posthog) => {
-      if (process.env.NODE_ENV === 'development') posthog.debug();
-    },
-  });
+  const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+  if (key) {
+    posthog.init(key, {
+      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
+      person_profiles: 'identified_only',
+      capture_pageview: false, // We'll capture pageviews manually
+      capture_pageleave: true,
+      loaded: (posthog) => {
+        if (process.env.NODE_ENV === 'development') posthog.debug();
+      },
+    });
+  }
 }
 
 export function PHProvider({ children }: { children: React.ReactNode }) {
@@ -23,23 +26,20 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
 
 /**
  * PostHog PageView tracker for Next.js App Router
- * Tracks route changes and search param changes
+ * Tracks route changes - simplified version without useSearchParams to avoid build issues
  */
 export function PostHogPageView(): null {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (pathname) {
-      let url = window.origin + pathname;
-      if (searchParams && searchParams.toString()) {
-        url = url + `?${searchParams.toString()}`;
-      }
+    if (typeof window !== 'undefined' && pathname) {
+      // Capture full URL including search params
+      const url = window.location.href;
       posthog.capture('$pageview', {
         $current_url: url,
       });
     }
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return null;
 }

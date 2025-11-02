@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { montserrat, kanit } from '@/assets/fonts';
 import { WebVitals } from './web-vitals';
 import { PHProvider, PostHogPageView } from '@/lib/posthog';
-import { Suspense } from 'react';
 import '@/assets/styles/globals.css';
 
 export const metadata: Metadata = {
@@ -93,9 +92,7 @@ export default function RootLayout({
       </head>
       <body className={`${montserrat.variable} ${kanit.variable} antialiased `}>
         <PHProvider>
-          <Suspense fallback={null}>
-            <PostHogPageView />
-          </Suspense>
+          <PostHogPageView />
           <WebVitals />
           {children}
         </PHProvider>
