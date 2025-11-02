@@ -1,4 +1,3 @@
-export { PHProvider, PostHogPageView } from './provider';
 export {
   useTrackProjectView,
   useTrackProjectClick,

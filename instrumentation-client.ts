@@ -1,5 +1,10 @@
 import posthog from "posthog-js"
 
+/**
+ * PostHog initialization for Next.js 15.3+
+ * This runs once when the app loads on the client
+ * See: https://posthog.com/docs/libraries/next-js
+ */
 posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
   cookieless_mode: "always",
   api_host: "/ingest",
