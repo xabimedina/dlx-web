@@ -1,5 +1,5 @@
 import { HomePage } from '@/components/pages/home';
-import { getPortraitProjects } from '@/server/firebase/api';
+import { getPortraitProjects, getWebTexts } from '@/server/firebase/api';
 import { StructuredData, organizationSchema, websiteSchema, localBusinessSchema } from '@/components/structured-data';
 import type { Metadata } from 'next';
 
@@ -43,12 +43,13 @@ export default async function Inicio() {
     subName: project.subName,
   }));
 
+  const { home, services } = await getWebTexts();
   return (
     <>
       <StructuredData data={organizationSchema} />
       <StructuredData data={websiteSchema} />
       <StructuredData data={localBusinessSchema} />
-      <HomePage portraitProjects={portraitProjects} />
+      <HomePage portraitProjects={portraitProjects} homeTexts={home} servicesTexts={services} />
     </>
   );
 }

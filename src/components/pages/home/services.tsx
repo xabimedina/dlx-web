@@ -2,33 +2,17 @@ import Image from 'next/image';
 import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
 import { animations, initialStates } from '@/lib/gsap';
 import { BLUR_DATA_URL } from '@/constants';
+import { Services } from '@/types/texts';
+import { useMemo } from 'react';
 
-const services = [
-  {
-    id: 'arquitectura',
-    title: 'ARQUITECTURA',
-    subtitle: 'Reformas integrales y obra nueva',
-    description:
-      'Una casa tiene muros, puertas y ventanas. Pero un hogar tiene historia, intención y alma. Con nosotros podrás proyectar espacios que, además de ser funcionales, hablen y expresen tu forma de ser. ',
-  },
-  {
-    id: 'interiorismo',
-    title: 'INTERIORISMO',
-    subtitle: "Muebles, colores, textura y alma",
-    description:
-      'Una vivienda es estructura. Pero un hogar es ese rincón de lectura con tu manta, esa cocina donde te apetece cocinar o ese salón adaptado para recibir a tus amigos. Traducimos tus gustos y experiencias en algo tangible, sin fórmulas genéricas ni estilos prefabricados',
-  },
-  {
-    id: 'asesoramiento',
-    title: 'ASESORAMIENTO',
-    subtitle: 'Ver un espacio y comprender lo que puede llegar a ser',
-    description:
-      'Un piso es un espacio preestablecido. Pero un futuro hogar va más allá de visitar casas: evaluamos distribución, estructura y potencial real, para que tomes decisiones inteligentes y sin riesgos.',
-  },
-];
-
+interface ServiceItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+}
 // Componente individual para cada servicio
-function ServiceItem({ service }: { service: typeof services[0] }) {
+function ServiceItem({ service }: { service: ServiceItem }) {
   const titleRef = useIntersectionAnimation<HTMLHeadingElement>({
     initialState: initialStates.fadeInUp,
     animation: animations.fadeInUp
@@ -52,7 +36,7 @@ function ServiceItem({ service }: { service: typeof services[0] }) {
       <div className='space-y-3'>
         <h2
           ref={titleRef}
-          className='text-2xl md:text-4xl lg:text-5xl font-bold text-jet tracking-wide'
+          className='text-2xl md:text-4xl lg:text-5xl font-bold text-jet tracking-wide uppercase'
         >
           {service.title}
         </h2>
@@ -73,13 +57,35 @@ function ServiceItem({ service }: { service: typeof services[0] }) {
   );
 }
 
-export function HomeServices() {
+export function HomeServices({ texts }: { texts: Services }) {
   "use client";
   const spanRef = useIntersectionAnimation<HTMLSpanElement>({
     initialState: initialStates.backgroundSlideIn,
     animation: animations.backgroundSlideIn,
     delay: 0.2,
   });
+
+  const services = useMemo(() => [
+    {
+      id: 'arquitectura',
+      title: texts['arch-title'],
+      subtitle: texts['arch-subtitle'],
+      description: texts['arch-description'],
+    },
+    {
+      id: 'interiorismo',
+      title: texts['int-title'],
+      subtitle: texts['int-subtitle'],
+      description: texts['int-description'],
+    },
+    {
+      id: 'asesoramiento',
+      title: texts['consult-title'],
+      subtitle: texts['consult-subtitle'],
+      description: texts['consult-description'],
+    },
+  ], [texts]);
+
   return (
     <section className='bg-smoke'>
       <div className='max-w-3xl mx-auto text-center py-18 space-y-2 md:space-y-6 '>

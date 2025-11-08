@@ -3,8 +3,9 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from '@xabimedina/dlx-components';
 import BackgroundVideo from './background-video';
 import { setupGSAP, animations } from '@/lib/gsap';
+import type { HomeStart } from '@/types/texts';
 
-export function HomePortrait() {
+export function HomePortrait({texts}:{texts: HomeStart}) {
   // Referencias para los elementos que queremos animar
   const titleRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
@@ -57,14 +58,14 @@ export function HomePortrait() {
             className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight sm:leading-snug md:leading-20 text-center sm:text-left'
             style={{ opacity: 0 }} // Estado inicial invisible
           >
-            Espacios pensados, hogares vívidos
+            {texts['start-title']}
           </h1>
           <p 
             ref={paragraphRef}
             className='text-base sm:text-lg font-medium max-sm:pl-6'
             style={{ opacity: 0 }} // Estado inicial invisible
           >
-            En Despeja la X no resolvemos con fórmulas genéricas. Tu reforma en Valencia es una ecuación única: la despejamos contigo, detalle a detalle
+            {texts['start-subtitle']}
           </p>
         </div>
 

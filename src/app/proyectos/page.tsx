@@ -1,4 +1,4 @@
-import { getAllProjects } from '@/server/firebase/api';
+import { getAllProjects, getWebTexts } from '@/server/firebase/api';
 import ProjectsPage from '@/components/pages/all-projects';
 import { StructuredData, generateBreadcrumbSchema } from '@/components/structured-data';
 
@@ -43,15 +43,22 @@ export default async function Proyectos() {
     id: project.id,
     subName: project.subName,
   }));
+  const { home } = await getWebTexts();
 
   const breadcrumbItems = [
     { name: 'Proyectos', url: '/proyectos' }
   ];
 
+  const projectTexts = {
+    'project-start-title': home['project-start-title'],
+    'project-start-subtitle': home['project-start-subtitle'],
+    'project-start-description': home['project-start-description'],
+  };
+
   return (
     <>
       <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
-      <ProjectsPage projects={portraitProjects} />
+      <ProjectsPage projects={portraitProjects} texts={projectTexts} />
     </>
   );
 }

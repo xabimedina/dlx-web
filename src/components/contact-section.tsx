@@ -2,8 +2,9 @@
 import { Button } from '@xabimedina/dlx-components';
 import { DlxLink } from '@xabimedina/dlx-components';
 import { useTrackCalculatorCTA, useTrackContact } from '@/lib/posthog';
+import type { HomeContact } from '@/types/texts';
 
-export const ContactSection = () => {
+export const ContactSection = ({ texts }: { texts: HomeContact }) => {
   const { trackCalculatorClick } = useTrackCalculatorCTA();
   const { trackContactClick } = useTrackContact();
 
@@ -19,7 +20,7 @@ export const ContactSection = () => {
                 PROYECTO
               </h2>
               <p className='text-gray-600 leading-relaxed'>
-                Descubre en minutos cuánto puede costar una reforma respondiendo solo 8 preguntas sencillas
+                {texts['contact-calculator-subtitle']}
               </p>
               <a 
                 href='https://calculadora.despejalax.es' 
@@ -36,15 +37,15 @@ export const ContactSection = () => {
           {/* Right Column - Services */}
           <div className='space-y-8'>
             <ServiceBlock
-              title='INTERIORISMO'
-              description='¿Quieres que el diseño de tu casa refleje tu esencia y se convierta en el hogar de tus sueños? Te asesoramos y acompañamos en cada paso de esta transformación.'
+              title={texts['contact-interior-title']}
+              description={texts['contact-interior-subtitle']}
               buttonText='Estoy interesadx'
               service='interiorismo'
               onContactClick={trackContactClick}
             />
             <ServiceBlock
-              title='ASESORAMIENTO'
-              description='¿Has encontrado un piso, chalet o casa con potencial pero no estás seguro? Te ayudamos a despejar dudas para que tomes la mejor decisión.'
+              title={texts['contact-consult-title']}
+              description={texts['contact-consult-subtitle']}
               buttonText='Quiero asesoramiento'
               service='asesoramiento'
               onContactClick={trackContactClick}
