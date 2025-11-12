@@ -6,8 +6,9 @@ import { NavLinks } from '@/components/nav-links';
 import { ContactSection } from '@/components/contact-section';
 import type { Project } from '@/types/project';
 import { ProjectPortrait } from './portrait';
+import { HomeContact } from '@/types/texts';
 
-export default function ProjectPage({ project }: { project: Project }) {
+export default function ProjectPage({ project, texts }: { project: Project, texts: HomeContact }) {
   return (
     <>
       <DlxNavbar type='smoke'>
@@ -41,7 +42,7 @@ export default function ProjectPage({ project }: { project: Project }) {
 
         <ProjectGallery images={project.images} />
       </main>
-      <ContactSection />
+      <ContactSection texts={texts} />
       <DlxFooter showSocialMedia={false} />
     </>
   );

@@ -1,4 +1,4 @@
-import { getAllProjects, getProjectById } from '@/server/firebase/api';
+import { getAllProjects, getProjectById, getWebTexts } from '@/server/firebase/api';
 import { notFound } from 'next/navigation';
 import ProjectPage from '@/components/pages/project';
 import { StructuredData, generateProjectSchema, generateBreadcrumbSchema } from '@/components/structured-data';
@@ -71,6 +71,16 @@ export default async function Proyecto({
 }) {
   const { id } = await params;
   const project = await getProjectById(id);
+  const { home } = await getWebTexts();
+
+    const contactTexts = {
+    'contact-calculator-subtitle': home['contact-calculator-subtitle'],
+    'contact-calculator-title': home['contact-calculator-title'],
+    'contact-consult-subtitle': home['contact-consult-subtitle'],
+    'contact-consult-title': home['contact-consult-title'],
+    'contact-interior-subtitle': home['contact-interior-subtitle'],
+    'contact-interior-title': home['contact-interior-title'],
+  };
 
   if (!project) {
     return notFound();
@@ -85,7 +95,7 @@ export default async function Proyecto({
     <>
       <StructuredData data={generateProjectSchema(project)} />
       <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
-      <ProjectPage project={project} />
+      <ProjectPage project={project} texts={contactTexts} />
     </>
   );
 }
