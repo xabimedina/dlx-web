@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { montserrat, kanit } from '@/assets/fonts';
+import { ConsentProvider } from '@/components/consent';
 import { GTM_ID } from '@/lib/analytics/constants';
+import { CONSENT_STORAGE_KEY, CONSENT_VERSION } from '@/lib/consent/constants';
 import { WebVitals } from './web-vitals';
 import '@/assets/styles/globals.css';
 
@@ -94,13 +96,27 @@ export default function RootLayout({
         <Script id="gtm-consent-mode" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            window.gtag = function(){window.dataLayer.push(arguments);}
             gtag('consent', 'default', {
               ad_storage: 'denied',
               ad_user_data: 'denied',
               ad_personalization: 'denied',
               analytics_storage: 'denied'
             });
+            try {
+              var storedConsent = window.localStorage.getItem('${CONSENT_STORAGE_KEY}');
+              if (storedConsent) {
+                var consentPreference = JSON.parse(storedConsent);
+                if (consentPreference.version === ${CONSENT_VERSION} && consentPreference.analytics === true) {
+                  gtag('consent', 'update', {
+                    ad_storage: 'denied',
+                    ad_user_data: 'denied',
+                    ad_personalization: 'denied',
+                    analytics_storage: 'granted'
+                  });
+                }
+              }
+            } catch (error) {}
           `}
         </Script>
       </head>
@@ -109,8 +125,10 @@ export default function RootLayout({
         className={`${montserrat.variable} ${kanit.variable} antialiased `}
         suppressHydrationWarning
       >
+        <ConsentProvider>
           <WebVitals />
           {children}
+        </ConsentProvider>
       </body>
     </html>
   );
