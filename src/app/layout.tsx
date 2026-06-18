@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { montserrat, kanit } from '@/assets/fonts';
+import { GTM_ID } from '@/lib/analytics/constants';
 import { WebVitals } from './web-vitals';
 import '@/assets/styles/globals.css';
 
@@ -88,7 +91,20 @@ export default function RootLayout({
         
         {/* Viewport optimizado */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <Script id="gtm-consent-mode" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied'
+            });
+          `}
+        </Script>
       </head>
+      <GoogleTagManager gtmId={GTM_ID} />
       <body
         className={`${montserrat.variable} ${kanit.variable} antialiased `}
         suppressHydrationWarning

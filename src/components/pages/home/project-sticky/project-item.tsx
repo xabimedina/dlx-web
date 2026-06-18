@@ -4,7 +4,7 @@ import { ProjectStickyContainer } from '@/components/project-sticky-container';
 import { DlxLink } from '@/components/pages/dlx-link';
 import { Z_INDEX_CLASSES } from '@/constants';
 import { useIntersectionAnimation } from '@/hooks/use-intersection-animation';
-import { useTrackProjectClick } from '@/lib/posthog';
+import { trackProjectClick } from '@/lib/analytics';
 import Image from 'next/image';
 import { getProjectsWithMetadata } from '.';
 import { animations, initialStates } from '@/lib/gsap';
@@ -17,8 +17,6 @@ export const ProjectItem = ({
   project: ReturnType<typeof getProjectsWithMetadata>[0];
   index: number;
 }) => {
-  const { trackProjectClick } = useTrackProjectClick();
-
   // Hooks de animación para cada elemento
   const linkRef = useIntersectionAnimation<HTMLAnchorElement>({
     initialState: initialStates.fadeInUp,

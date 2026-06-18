@@ -5,7 +5,7 @@ import { GALLERY_MAP_STYLES } from '@/constants';
 import { AspectRatio } from '@xabimedina/dlx-components';
 import { useState } from 'react';
 import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
+import 'react-image-gallery/styles/image-gallery.css';
 import { X } from 'lucide-react';
 import { BLUR_DATA_URL } from '@/constants';
 
