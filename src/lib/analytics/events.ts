@@ -2,7 +2,7 @@
 
 import { sendGAEvent } from '@next/third-parties/google';
 
-import { CALCULATOR_URL } from './constants';
+import { CALCULATOR_URL, GA_MEASUREMENT_ID } from './constants';
 
 type ContactType = 'email' | 'phone' | 'whatsapp';
 type ProjectClickSource = 'homepage' | 'projects_page';
@@ -18,6 +18,20 @@ export function trackGoogleAnalyticsEvent({ event, ...params }: GTMEvent) {
 }
 
 export const trackGTMEvent = trackGoogleAnalyticsEvent;
+
+export function trackPageView(url?: string) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  const pageUrl = new URL(url ?? window.location.href, window.location.origin);
+
+  sendGAEvent('config', GA_MEASUREMENT_ID, {
+    page_path: `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`,
+    page_location: pageUrl.href,
+    page_title: document.title,
+  });
+}
 
 export function trackProjectClick(
   projectId: string,

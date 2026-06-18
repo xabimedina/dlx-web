@@ -95,7 +95,7 @@ export default function RootLayout({
         
         {/* Viewport optimizado */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <Script id="gtm-consent-mode" strategy="beforeInteractive">
+        <Script id="ga-consent-mode" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             window.gtag = function(){window.dataLayer.push(arguments);}
