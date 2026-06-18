@@ -1,7 +1,14 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { montserrat, kanit } from '@/assets/fonts';
+import { CookieConsentProvider } from '@/components/cookie-consent';
+import { GA_MEASUREMENT_ID } from '@/lib/analytics/constants';
 import { WebVitals } from './web-vitals';
 import '@/assets/styles/globals.css';
+
+const CONSENT_STORAGE_KEY = 'dlx_cookie_consent';
+const CONSENT_VERSION = 1;
 
 export const metadata: Metadata = {
   title: {
@@ -88,10 +95,42 @@ export default function RootLayout({
         
         {/* Viewport optimizado */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <Script id="gtm-consent-mode" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){window.dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied'
+            });
+            try {
+              var storedConsent = window.localStorage.getItem('${CONSENT_STORAGE_KEY}');
+              if (storedConsent) {
+                var consentPreference = JSON.parse(storedConsent);
+                if (consentPreference.version === ${CONSENT_VERSION} && consentPreference.analytics === true) {
+                  gtag('consent', 'update', {
+                    ad_storage: 'denied',
+                    ad_user_data: 'denied',
+                    ad_personalization: 'denied',
+                    analytics_storage: 'granted'
+                  });
+                }
+              }
+            } catch (error) {}
+          `}
+        </Script>
       </head>
-      <body className={`${montserrat.variable} ${kanit.variable} antialiased `}>
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+      <body
+        className={`${montserrat.variable} ${kanit.variable} antialiased `}
+        suppressHydrationWarning
+      >
+        <CookieConsentProvider>
           <WebVitals />
           {children}
+        </CookieConsentProvider>
       </body>
     </html>
   );

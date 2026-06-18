@@ -1,13 +1,10 @@
 'use client';
 import { Button } from '@xabimedina/dlx-components';
 import { DlxLink } from '@xabimedina/dlx-components';
-import { useTrackCalculatorCTA, useTrackContact } from '@/lib/posthog';
+import { trackCalculatorClick, trackContactClick } from '@/lib/analytics';
 import type { HomeContact } from '@/types/texts';
 
 export const ContactSection = ({ texts }: { texts: HomeContact }) => {
-  const { trackCalculatorClick } = useTrackCalculatorCTA();
-  const { trackContactClick } = useTrackContact();
-
   return (
     <section id='contacto' className='bg-smoke py-24'>
       <div className='max-w-6xl mx-auto px-6'>
@@ -26,7 +23,7 @@ export const ContactSection = ({ texts }: { texts: HomeContact }) => {
                 href='https://calculadora.despejalax.es' 
                 target='_blank' 
                 rel='noopener noreferrer'
-                onClick={() => trackCalculatorClick('contact-section')}
+                onClick={() => trackCalculatorClick('contact_section')}
               >
                 <Button variant="accent">
                   Calcula tu presupuesto

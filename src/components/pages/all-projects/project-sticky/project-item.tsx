@@ -10,6 +10,7 @@ import { animations, initialStates } from '@/lib/gsap';
 import { BLUR_DATA_URL } from '@/constants'; 
 import { ArrowRightIcon } from 'lucide-react';
 import Link from 'next/link';
+import { trackProjectClick } from '@/lib/analytics';
 
 export function ProjectItem({
   project,
@@ -18,6 +19,9 @@ export function ProjectItem({
   project: ReturnType<typeof getProjectsWithMetadata>[number],
   index: number
 }) {
+  const handleProjectClick = () => {
+    trackProjectClick(project.id, project.name, 'projects_page');
+  };
 
   const titleRef = useIntersectionAnimation<HTMLHeadingElement>({
     initialState: initialStates.fadeInUp,
@@ -53,14 +57,17 @@ export function ProjectItem({
             ref={titleRef}
             className={`cursor-pointer text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-bold font-kanit uppercase tracking-widest ${project.color}`}
           >
-            <DlxLink href={`/proyectos/${project.id}`}>
+            <DlxLink
+              href={`/proyectos/${project.id}`}
+              onClick={handleProjectClick}
+            >
               {project.name}
             </DlxLink>
           </h2>
             <p className={`px-6 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-2xl text-center font-normal uppercase ${project.color}`}>{project.subName}</p>
 
           <div className='absolute bottom-0 right-0'>
-            <Link href={`/proyectos/${project.id}`}>
+            <Link href={`/proyectos/${project.id}`} onClick={handleProjectClick}>
               <button className='color-saffron cursor-pointer font-semibold bg-saffron h-12 py-2 px-12 w-fit flex items-center justify-center gap-4'>
                 Ver más
                 <ArrowRightIcon />

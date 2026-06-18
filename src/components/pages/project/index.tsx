@@ -7,8 +7,21 @@ import { ContactSection } from '@/components/contact-section';
 import type { Project } from '@/types/project';
 import { ProjectPortrait } from './portrait';
 import { HomeContact } from '@/types/texts';
+import { trackProjectView } from '@/lib/analytics';
+import { useEffect } from 'react';
 
 export default function ProjectPage({ project, texts }: { project: Project, texts: HomeContact }) {
+  useEffect(() => {
+    trackProjectView({
+      projectId: project.id,
+      projectName: project.name,
+      workType: project.workType.name,
+      projectStyle: project.projectStyle.name,
+      location: project.location,
+      area: project.area,
+    });
+  }, [project]);
+
   return (
     <>
       <DlxNavbar type='smoke'>

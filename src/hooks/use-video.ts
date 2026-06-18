@@ -43,14 +43,9 @@ export const useVideo = () => {
             }
         };
 
-        const handleStalled = () => {
-            console.warn('Video loading stalled');
-        };
-
         // Timeout fallback: if video doesn't load in 10 seconds, show content anyway
         timeoutRef.current = setTimeout(() => {
             if (!isLoaded) {
-                console.warn('Video loading timeout - showing content anyway');
                 setIsVideoLoaded(true);
             }
         }, 10000);
@@ -59,7 +54,6 @@ export const useVideo = () => {
         video.addEventListener('canplay', handleCanPlay);
         video.addEventListener('loadeddata', handleLoadedData);
         video.addEventListener('error', handleError);
-        video.addEventListener('stalled', handleStalled);
 
         // Check if video is already loaded
         if (video.readyState >= 3) {
@@ -74,7 +68,6 @@ export const useVideo = () => {
             video.removeEventListener('canplay', handleCanPlay);
             video.removeEventListener('loadeddata', handleLoadedData);
             video.removeEventListener('error', handleError);
-            video.removeEventListener('stalled', handleStalled);
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
             }

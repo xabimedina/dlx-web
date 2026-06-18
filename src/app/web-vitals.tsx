@@ -1,6 +1,7 @@
 'use client';
 
 import { useReportWebVitals } from 'next/web-vitals';
+import { trackGTMEvent } from '@/lib/analytics';
 
 export function WebVitals() {
   useReportWebVitals((metric) => {
@@ -14,19 +15,14 @@ export function WebVitals() {
       });
     }
 
-    // Enviar a Google Analytics si está configurado
-    if (typeof window !== 'undefined') {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const gtag = (window as any).gtag;
-      if (gtag) {
-        gtag('event', metric.name, {
-          value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
-          event_category: 'Web Vitals',
-          event_label: metric.id,
-          non_interaction: true,
-        });
-      }
-    }
+    trackGTMEvent({
+      event: 'web_vital',
+      metric_name: metric.name,
+      metric_value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+      metric_id: metric.id,
+      metric_rating: metric.rating,
+      navigation_type: metric.navigationType,
+    });
 
     // También se puede enviar a otros servicios de analytics
     // Por ejemplo, a un endpoint propio para tracking

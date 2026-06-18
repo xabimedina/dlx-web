@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from '@xabimedina/dlx-components';
 import BackgroundVideo from './background-video';
 import { setupGSAP, animations } from '@/lib/gsap';
+import { CALCULATOR_URL, trackCalculatorClick } from '@/lib/analytics';
 import type { HomeStart } from '@/types/texts';
 
 export function HomePortrait({texts}:{texts: HomeStart}) {
@@ -70,9 +71,10 @@ export function HomePortrait({texts}:{texts: HomeStart}) {
         </div>
 
         <a
-          href='https://calculadora.despejalax.es/'
+          href={CALCULATOR_URL}
           ref={buttonWrapperRef}
           className='w-full flex justify-center'
+          onClick={() => trackCalculatorClick('hero')}
           style={{ opacity: 0 }} // Estado inicial invisible
         >
           <Button 
