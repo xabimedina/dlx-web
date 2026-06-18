@@ -1,6 +1,6 @@
 'use client';
 
-import { sendGTMEvent } from '@next/third-parties/google';
+import { sendGAEvent } from '@next/third-parties/google';
 
 import { CALCULATOR_URL } from './constants';
 
@@ -13,9 +13,11 @@ type GTMEvent = {
   [key: string]: string | number | boolean | null | undefined;
 };
 
-export function trackGTMEvent(event: GTMEvent) {
-  sendGTMEvent(event);
+export function trackGoogleAnalyticsEvent({ event, ...params }: GTMEvent) {
+  sendGAEvent('event', event, params);
 }
+
+export const trackGTMEvent = trackGoogleAnalyticsEvent;
 
 export function trackProjectClick(
   projectId: string,

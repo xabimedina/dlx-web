@@ -42,8 +42,7 @@ export default function PoliticaDeCookiesPage() {
           <p className="leading-relaxed text-jet/75">
             En Despeja la X usamos cookies técnicas necesarias para el
             funcionamiento básico de la web y, solo si das tu consentimiento,
-            cookies analíticas de Google Analytics gestionadas a través de Google
-            Tag Manager.
+            cookies analíticas de Google Analytics.
           </p>
         </section>
 
@@ -68,7 +67,7 @@ export default function PoliticaDeCookiesPage() {
               <tbody>
                 <tr className="border-b border-jet/10">
                   <td className="py-3 pr-4">Analítica</td>
-                  <td className="py-3 pr-4">Google Analytics / Google Tag Manager</td>
+                  <td className="py-3 pr-4">Google Analytics</td>
                   <td className="py-3 pr-4">Medición de uso, eventos y rendimiento</td>
                   <td className="py-3">Desactivada hasta consentimiento</td>
                 </tr>

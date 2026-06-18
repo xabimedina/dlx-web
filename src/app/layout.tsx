@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { montserrat, kanit } from '@/assets/fonts';
 import { CookieConsentProvider } from '@/components/cookie-consent';
-import { GTM_ID } from '@/lib/analytics/constants';
+import { GA_MEASUREMENT_ID } from '@/lib/analytics/constants';
 import { WebVitals } from './web-vitals';
 import '@/assets/styles/globals.css';
 
@@ -122,7 +122,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <GoogleTagManager gtmId={GTM_ID} />
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       <body
         className={`${montserrat.variable} ${kanit.variable} antialiased `}
         suppressHydrationWarning
