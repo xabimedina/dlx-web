@@ -2,11 +2,13 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { montserrat, kanit } from '@/assets/fonts';
-import { ConsentProvider } from '@/components/consent';
+import { CookieConsentProvider } from '@/components/cookie-consent';
 import { GTM_ID } from '@/lib/analytics/constants';
-import { CONSENT_STORAGE_KEY, CONSENT_VERSION } from '@/lib/consent/constants';
 import { WebVitals } from './web-vitals';
 import '@/assets/styles/globals.css';
+
+const CONSENT_STORAGE_KEY = 'dlx_cookie_consent';
+const CONSENT_VERSION = 1;
 
 export const metadata: Metadata = {
   title: {
@@ -125,10 +127,10 @@ export default function RootLayout({
         className={`${montserrat.variable} ${kanit.variable} antialiased `}
         suppressHydrationWarning
       >
-        <ConsentProvider>
+        <CookieConsentProvider>
           <WebVitals />
           {children}
-        </ConsentProvider>
+        </CookieConsentProvider>
       </body>
     </html>
   );

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-
-import { ConsentPreferencesButton } from '@/components/consent';
+import { ConsentPreferencesButton } from '@/components/cookie-consent';
 
 export const metadata: Metadata = {
   title: 'Política de cookies',
