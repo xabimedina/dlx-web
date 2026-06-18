@@ -89,7 +89,10 @@ export default function RootLayout({
         {/* Viewport optimizado */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
-      <body className={`${montserrat.variable} ${kanit.variable} antialiased `}>
+      <body
+        className={`${montserrat.variable} ${kanit.variable} antialiased `}
+        suppressHydrationWarning
+      >
           <WebVitals />
           {children}
       </body>

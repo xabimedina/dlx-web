@@ -1,17 +1,17 @@
 // Import the functions you need from the SDKs you need
 import 'server-only'; // Ensure server-only is imported first
-import admin from 'firebase-admin';
+import { cert, getApps, initializeApp } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
+import { getStorage } from 'firebase-admin/storage';
 
 // Initialize Firebase Admin SDK
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert({
+const app = getApps()[0] ?? initializeApp({
+  credential: cert({
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-      privateKey: process.env.PRIVATE_KEY,
+      privateKey: process.env.PRIVATE_KEY?.replace(/\\n/g, '\n'),
       clientEmail: process.env.CLIENT_EMAIL,
     }),
-  });
-}
+});
 
 // Initialize Firebase Web SDK
 const firebaseConfig = {
@@ -25,5 +25,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
-export const db = admin.firestore();
-export const storage = admin.storage().bucket(firebaseConfig.storageBucket);
+export const db = getFirestore(app);
+export const storage = getStorage(app).bucket(firebaseConfig.storageBucket);
