@@ -27,7 +27,7 @@ export default function ProjectsPage({
         <p className='max-w-2xl text-sm sm:text-base md:text-lg text-pretty px-6'>{texts['project-start-description']}</p>
       </main>
       <AllProjects projects={projects} />
-      <DlxFooter showSocialMedia={false} />
+      <DlxFooter />
     </>
   );
 }

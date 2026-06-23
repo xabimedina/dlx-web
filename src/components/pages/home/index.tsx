@@ -45,7 +45,7 @@ export function HomePage({
       </main>
       <ProjectsHome projects={portraitProjects} />
       <ContactSection texts={contactTexts} />
-      <DlxFooter showSocialMedia={false} />
+      <DlxFooter />
     </>
   );
 }

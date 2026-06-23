@@ -56,7 +56,7 @@ export default function ProjectPage({ project, texts }: { project: Project, text
         <ProjectGallery images={project.images} />
       </main>
       <ContactSection texts={texts} />
-      <DlxFooter showSocialMedia={false} />
+      <DlxFooter />
     </>
   );
 }
