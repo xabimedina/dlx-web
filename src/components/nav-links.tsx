@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 const navLinks = [
   { href: '/', label: 'Inicio' },
   { href: '/proyectos', label: 'Proyectos' },
+  { href: 'https://blog.despejalax.es/', label: 'Blog' },
   { href: '/#contacto', label: 'Contacto' },
 ];
 
