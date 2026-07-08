@@ -13,10 +13,12 @@ const CONSENT_VERSION = 1;
 export const metadata: Metadata = {
   title: {
     default: 'Despeja la X - Estudio de Arquitectura e Interiorismo',
-    template: '%s | Despeja la X'
+    template: '%s | Despeja la X',
   },
-  description: 'Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos. Transformamos espacios con diseño contemporáneo y funcional.',
-  keywords: 'arquitectura, interiorismo, diseño, reforma, hogar, estudio arquitectura, diseño interior, proyectos residenciales',
+  description:
+    'Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos. Transformamos espacios con diseño contemporáneo y funcional.',
+  keywords:
+    'arquitectura, interiorismo, diseño, reforma, hogar, estudio arquitectura, diseño interior, proyectos residenciales',
   authors: [{ name: 'Despeja la X' }],
   creator: 'Despeja la X',
   publisher: 'Despeja la X',
@@ -30,7 +32,8 @@ export const metadata: Metadata = {
     url: 'https://www.despejalax.es',
     siteName: 'Despeja la X',
     title: 'Despeja la X - Estudio de Arquitectura e Interiorismo',
-    description: 'Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos. Transformamos espacios con diseño contemporáneo y funcional.',
+    description:
+      'Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos. Transformamos espacios con diseño contemporáneo y funcional.',
     images: [
       {
         url: '/brand/dlx-logo-black.png',
@@ -43,7 +46,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Despeja la X - Estudio de Arquitectura e Interiorismo',
-    description: 'Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos.',
+    description:
+      'Estudio de arquitectura e interiorismo especializado en proyectos residenciales únicos.',
     images: ['/brand/dlx-logo-black.png'],
     creator: '@despejalax',
   },
@@ -78,24 +82,50 @@ export default function RootLayout({
   return (
     <html lang='es'>
       <head>
+        <Script
+          src='//unpkg.com/react-scan/dist/auto.global.js'
+          crossOrigin='anonymous'
+          strategy='beforeInteractive'
+        />
         {/* Preconnect para optimización de rendimiento */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link rel="dns-prefetch" href="https://storage.googleapis.com" />
-        
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link
+          rel='preconnect'
+          href='https://fonts.gstatic.com'
+          crossOrigin=''
+        />
+        <link rel='dns-prefetch' href='https://storage.googleapis.com' />
+
         {/* Favicons */}
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        
+        <link
+          rel='apple-touch-icon'
+          sizes='180x180'
+          href='/apple-touch-icon.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/favicon-32x32.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+          href='/favicon-16x16.png'
+        />
+        <link rel='manifest' href='/site.webmanifest' />
+
         {/* Theme colors */}
-        <meta name="theme-color" content="#F4F3F1" />
-        <meta name="msapplication-TileColor" content="#F4F3F1" />
-        
+        <meta name='theme-color' content='#F4F3F1' />
+        <meta name='msapplication-TileColor' content='#F4F3F1' />
+
         {/* Viewport optimizado */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <Script id="ga-consent-mode" strategy="beforeInteractive">
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1, viewport-fit=cover'
+        />
+        <Script id='ga-consent-mode' strategy='beforeInteractive'>
           {`
             window.dataLayer = window.dataLayer || [];
             window.gtag = function(){window.dataLayer.push(arguments);}

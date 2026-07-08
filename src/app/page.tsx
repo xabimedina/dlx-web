@@ -1,5 +1,5 @@
 import { HomePage } from '@/components/pages/home';
-import { getPortraitProjects, getWebTexts } from '@/server/firebase/api';
+import { getFooterProjects, getPortraitProjects, getWebTexts } from '@/server/firebase/api';
 import { StructuredData, organizationSchema, websiteSchema, localBusinessSchema } from '@/components/structured-data';
 import type { Metadata } from 'next';
 
@@ -33,7 +33,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Inicio() {
-  const projects = await getPortraitProjects();
+  const [projects, footerProjects] = await Promise.all([
+    getPortraitProjects(),
+    getFooterProjects(),
+  ]);
   const portraitProjects = projects.map(project => ({
     name: project.name,
     description: project.description,
@@ -49,7 +52,12 @@ export default async function Inicio() {
       <StructuredData data={organizationSchema} />
       <StructuredData data={websiteSchema} />
       <StructuredData data={localBusinessSchema} />
-      <HomePage portraitProjects={portraitProjects} homeTexts={home} servicesTexts={services} />
+      <HomePage
+        portraitProjects={portraitProjects}
+        footerProjects={footerProjects}
+        homeTexts={home}
+        servicesTexts={services}
+      />
     </>
   );
 }

@@ -12,7 +12,7 @@ import { BLUR_DATA_URL } from '@/constants';
 
 export const ProjectItem = ({
   project,
-  index
+  index,
 }: {
   project: ReturnType<typeof getProjectsWithMetadata>[0];
   index: number;
@@ -52,7 +52,7 @@ export const ProjectItem = ({
         <div className='z-10 absolute h-6/12 left-20 md:left-30 top-1/2 -translate-y-1/2 space-y-[28%]'>
           <DlxLink
             ref={linkRef}
-            className='text-6xl md:text-[8rem] tracking-widest uppercase font-bold font-kanit'
+            className='text-6xl md:text-[7rem] tracking-widest uppercase font-bold font-kanit'
             href={`/proyectos/${project.id}`}
             onClick={handleProjectClick}
           >
@@ -76,18 +76,18 @@ export const ProjectItem = ({
           className='w-full md:w-5/12 h-[80vh] absolute -right-0 top-1/2 -translate-y-1/2'
           onClick={handleProjectClick}
         >
-          <div ref={imageRef} className="w-full h-full relative">
+          <div ref={imageRef} className='w-full h-full relative'>
             <Image
               src={project.portrait}
               alt={`Retrato para el proyecto ${project.name}`}
               className='object-cover'
               fill
               unoptimized
-              placeholder="blur"
-        blurDataURL={BLUR_DATA_URL}
+              placeholder='blur'
+              blurDataURL={BLUR_DATA_URL}
             />
             {/* Overlay solo en móvil */}
-            <div className="absolute inset-0 bg-neutral-400/40 backdrop-blur-xs md:hidden"></div>
+            <div className='absolute inset-0 bg-neutral-400/40 backdrop-blur-xs md:hidden'></div>
           </div>
         </a>
       </article>

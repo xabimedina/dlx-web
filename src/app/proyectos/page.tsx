@@ -1,4 +1,4 @@
-import { getAllProjects, getWebTexts } from '@/server/firebase/api';
+import { getAllProjects, getFooterProjects, getWebTexts } from '@/server/firebase/api';
 import ProjectsPage from '@/components/pages/all-projects';
 import { StructuredData, generateBreadcrumbSchema } from '@/components/structured-data';
 
@@ -34,7 +34,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Proyectos() {
-  const projects = await getAllProjects();
+  const [projects, footerProjects] = await Promise.all([
+    getAllProjects(),
+    getFooterProjects(),
+  ]);
   const portraitProjects = projects.map(project => ({
     name: project.name,
     description: project.description,
@@ -58,7 +61,11 @@ export default async function Proyectos() {
   return (
     <>
       <StructuredData data={generateBreadcrumbSchema(breadcrumbItems)} />
-      <ProjectsPage projects={portraitProjects} texts={projectTexts} />
+      <ProjectsPage
+        projects={portraitProjects}
+        footerProjects={footerProjects}
+        texts={projectTexts}
+      />
     </>
   );
 }
