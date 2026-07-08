@@ -82,11 +82,6 @@ export default function RootLayout({
   return (
     <html lang='es'>
       <head>
-        <Script
-          src='//unpkg.com/react-scan/dist/auto.global.js'
-          crossOrigin='anonymous'
-          strategy='beforeInteractive'
-        />
         {/* Preconnect para optimización de rendimiento */}
         <link rel='preconnect' href='https://fonts.googleapis.com' />
         <link
