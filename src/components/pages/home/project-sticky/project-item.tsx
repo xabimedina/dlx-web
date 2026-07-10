@@ -40,7 +40,7 @@ export const ProjectItem = ({
   });
 
   const handleProjectClick = () => {
-    trackProjectClick(project.id, project.name, 'homepage');
+    trackProjectClick(project.id, project.name, 'homepage', project.slug);
   };
 
   return (
@@ -53,7 +53,7 @@ export const ProjectItem = ({
           <DlxLink
             ref={linkRef}
             className='text-6xl md:text-[7rem] tracking-widest uppercase font-bold font-kanit'
-            href={`/proyectos/${project.id}`}
+            href={`/proyectos/${project.slug}`}
             onClick={handleProjectClick}
           >
             {project.name}
@@ -72,7 +72,7 @@ export const ProjectItem = ({
         </div>
 
         <a
-          href={`/proyectos/${project.id}`}
+          href={`/proyectos/${project.slug}`}
           className='w-full md:w-5/12 h-[80vh] absolute -right-0 top-1/2 -translate-y-1/2'
           onClick={handleProjectClick}
         >

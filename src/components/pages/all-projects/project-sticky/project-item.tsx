@@ -20,7 +20,7 @@ export function ProjectItem({
   index: number
 }) {
   const handleProjectClick = () => {
-    trackProjectClick(project.id, project.name, 'projects_page');
+    trackProjectClick(project.id, project.name, 'projects_page', project.slug);
   };
 
   const titleRef = useIntersectionAnimation<HTMLHeadingElement>({
@@ -58,7 +58,7 @@ export function ProjectItem({
             className={`cursor-pointer text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-bold font-kanit uppercase tracking-widest ${project.color}`}
           >
             <DlxLink
-              href={`/proyectos/${project.id}`}
+              href={`/proyectos/${project.slug}`}
               onClick={handleProjectClick}
             >
               {project.name}
@@ -67,7 +67,7 @@ export function ProjectItem({
             <p className={`px-6 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-2xl text-center font-normal uppercase ${project.color}`}>{project.subName}</p>
 
           <div className='absolute bottom-0 right-0'>
-            <Link href={`/proyectos/${project.id}`} onClick={handleProjectClick}>
+            <Link href={`/proyectos/${project.slug}`} onClick={handleProjectClick}>
               <button className='color-saffron cursor-pointer font-semibold bg-saffron h-12 py-2 px-12 w-fit flex items-center justify-center gap-4'>
                 Ver más
                 <ArrowRightIcon />

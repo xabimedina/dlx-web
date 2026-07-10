@@ -52,7 +52,7 @@ export const AllProjects = ({ projects }: ProjectsProps) => {
                 <h2
                   className={`cursor-pointer text-[12rem] font-bold font-kanit uppercase tracking-widest ${project.color}`}
                 >
-                  <DlxLink href={`/proyectos/${project.id}`}>
+                  <DlxLink href={`/proyectos/${project.slug}`}>
                     {project.name}
                   </DlxLink>
                 </h2>

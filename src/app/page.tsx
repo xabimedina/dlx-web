@@ -43,6 +43,7 @@ export default async function Inicio() {
     portrait: project.portrait,
     color: project.color,
     id: project.id,
+    slug: project.slug,
     subName: project.subName,
   }));
 

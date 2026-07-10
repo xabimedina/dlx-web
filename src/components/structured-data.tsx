@@ -60,6 +60,7 @@ interface ProjectType {
   projectStyle: { name: string };
   location: string;
   id: string;
+  slug: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }
@@ -126,7 +127,7 @@ export function generateProjectSchema(project: ProjectType) {
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.despejalax.es/proyectos/${project.id}`
+      "@id": `https://www.despejalax.es/proyectos/${project.slug}`
     },
     "genre": `${project.workType.name} ${project.projectStyle.name}`,
     "locationCreated": {

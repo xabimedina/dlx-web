@@ -7,6 +7,43 @@ import type { Project } from '@/types/project';
 const COLLECTION = 'projects';
 const STARRED_PROJECTS_IDS = ['sAhxxQQQ45cab5wu76bl', 'w0dsQwdUym5BMjDk84Sx', 'YSf9otEJoelmc6sZSMqD']; // Reemplaza con los IDs reales de los proyectos destacados
 
+type RawProject = Omit<Project, 'images' | 'portrait' | 'createdAt'> & {
+  images: string[];
+  portrait: string;
+  createdAt: Timestamp;
+  showProject?: boolean;
+};
+
+function normalizeProject(raw: RawProject, documentId: string): RawProject {
+  const id = typeof raw.id === 'string' && raw.id.trim().length > 0
+    ? raw.id
+    : documentId;
+  const slug = typeof raw.slug === 'string' && raw.slug.trim().length > 0
+    ? raw.slug.trim()
+    : id;
+
+  return {
+    ...raw,
+    id,
+    slug,
+  };
+}
+
+async function resolveProjectImages(raw: RawProject, imageLimit?: number): Promise<Project> {
+  const imagePaths = imageLimit ? raw.images.slice(0, imageLimit) : raw.images;
+  const [images, portrait] = await Promise.all([
+    Promise.all(imagePaths.map(path => getDownloadUrl(path))),
+    getDownloadUrl(raw.portrait),
+  ]);
+
+  return {
+    ...raw,
+    createdAt: raw.createdAt.toDate(),
+    images,
+    portrait,
+  } as Project;
+}
+
 /**
  * Devuelve un proyecto específico por su ID con las URLs de descarga
  * resueltas para imágenes y retrato.
@@ -19,18 +56,38 @@ export async function getProjectById(id: string): Promise<Project | null> {
       return null;
     }
 
-    const raw = doc.data() as Omit<Project, 'images' | 'portrait' | 'createdAt'> & {
-      images: string[];
-      portrait: string;
-      createdAt: Timestamp;
-    };
+    const raw = normalizeProject(doc.data() as RawProject, doc.id);
 
-    const [images, portrait] = await Promise.all([
-      Promise.all(raw.images.slice(0, 6).map(path => getDownloadUrl(path))),
-      getDownloadUrl(raw.portrait),
-    ]);
+    return resolveProjectImages(raw, 6);
+  } catch (err) {
+    console.error('Error fetching project:', err);
+    return null;
+  }
+}
 
-    return { ...raw, createdAt: raw.createdAt.toDate(), images, portrait } as Project;
+/**
+ * Devuelve un proyecto visible por su slug con las URLs de descarga
+ * resueltas para imágenes y retrato.
+ */
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  try {
+    const snapshot = await db
+      .collection(COLLECTION)
+      .where('slug', '==', slug)
+      .limit(1)
+      .get();
+
+    if (snapshot.empty) {
+      return null;
+    }
+
+    const doc = snapshot.docs[0];
+    const raw = normalizeProject(doc.data() as RawProject, doc.id);
+    if (raw.showProject !== true) {
+      return null;
+    }
+
+    return resolveProjectImages(raw, 6);
   } catch (err) {
     console.error('Error fetching project:', err);
     return null;
@@ -46,17 +103,9 @@ export async function getAllProjects(): Promise<Project[]> {
     const snapshot = await db.collection(COLLECTION).where('showProject', '==', true).get();
 
     const projectPromises = snapshot.docs.map(async doc => {
-      const raw = doc.data() as Omit<Project, 'images' | 'portrait'> & {
-        images: string[];
-        portrait: string;
-      };
+      const raw = normalizeProject(doc.data() as RawProject, doc.id);
 
-      const [images, portrait] = await Promise.all([
-        Promise.all(raw.images.map(path => getDownloadUrl(path))),
-        getDownloadUrl(raw.portrait),
-      ]);
-
-      return { ...raw, images, portrait } as Project;
+      return resolveProjectImages(raw);
     });
 
     return (await Promise.all(projectPromises)).reverse();
@@ -71,17 +120,9 @@ export async function getPortraitProjects(): Promise<Project[]> {
     const snapshot = await db.collection(COLLECTION).get();
 
     const projectPromises = snapshot.docs.map(async doc => {
-      const raw = doc.data() as Omit<Project, 'images' | 'portrait'> & {
-        images: string[];
-        portrait: string;
-      };
+      const raw = normalizeProject(doc.data() as RawProject, doc.id);
 
-      const [images, portrait] = await Promise.all([
-        Promise.all(raw.images.map(path => getDownloadUrl(path))),
-        getDownloadUrl(raw.portrait),
-      ]);
-
-      return { ...raw, images, portrait } as Project;
+      return resolveProjectImages(raw);
     });
 
     const projects = await Promise.all(projectPromises);

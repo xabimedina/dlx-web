@@ -36,14 +36,15 @@ export function trackPageView(url?: string) {
 export function trackProjectClick(
   projectId: string,
   projectName: string,
-  source: ProjectClickSource
+  source: ProjectClickSource,
+  projectSlug = projectId
 ) {
   trackGTMEvent({
     event: 'project_click',
     project_id: projectId,
     project_name: projectName,
     source,
-    destination_url: `/proyectos/${projectId}`,
+    destination_url: `/proyectos/${projectSlug}`,
   });
 }
 

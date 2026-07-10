@@ -12,13 +12,18 @@ export interface FooterProjectLink {
 
 type RawFooterProject = {
   id?: unknown;
+  slug?: unknown;
   name?: unknown;
   createdAt?: unknown;
 };
 
-function getProjectId(raw: RawFooterProject, documentId: string): string {
+function getProjectSlug(raw: RawFooterProject, documentId: string): string {
+  if (typeof raw.slug === 'string' && raw.slug.trim().length > 0) {
+    return raw.slug.trim();
+  }
+
   return typeof raw.id === 'string' && raw.id.trim().length > 0
-    ? raw.id
+    ? raw.id.trim()
     : documentId;
 }
 
@@ -56,12 +61,12 @@ export async function getFooterProjects(): Promise<FooterProjectLink[]> {
           return [];
         }
 
-        const id = getProjectId(raw, doc.id);
+        const slug = getProjectSlug(raw, doc.id);
 
         return [
           {
             name: raw.name.trim(),
-            href: `/proyectos/${id}`,
+            href: `/proyectos/${slug}`,
             createdAt: getCreatedAtMillis(raw.createdAt),
           },
         ];

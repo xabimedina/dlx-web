@@ -12,6 +12,7 @@ export interface CategoriesData {
 
 export interface Project {
   id: string;
+  slug: string;
   name: string;
   location: string;
   area: number;
@@ -27,5 +28,5 @@ export interface Project {
 
 export type ProjectPortrait = Pick<
   Project,
-  'name' | 'description' | 'portrait' | 'color' | 'id' | 'subName'
+  'name' | 'description' | 'portrait' | 'color' | 'id' | 'slug' | 'subName'
 >;

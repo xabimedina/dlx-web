@@ -1,27 +1,27 @@
-import { getAllProjects, getFooterProjects, getProjectById, getWebTexts } from '@/server/firebase/api';
-import { notFound } from 'next/navigation';
+import { getAllProjects, getFooterProjects, getProjectById, getProjectBySlug, getWebTexts } from '@/server/firebase/api';
+import { notFound, permanentRedirect } from 'next/navigation';
 import ProjectPage from '@/components/pages/project';
 import { StructuredData, generateProjectSchema, generateBreadcrumbSchema } from '@/components/structured-data';
 
 import type { Metadata } from 'next';
 
 export const revalidate = 1800;
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const projects = await getAllProjects();
   return projects.map(project => ({
-    id: String(project.id),
+    slug: String(project.slug),
   }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { id } = await params;
-  const project = await getProjectById(id);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug) ?? await getProjectById(slug);
 
   if (!project) {
     return {
@@ -41,7 +41,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${project.name} - Proyecto de ${project.workType.name}`,
       description: `${project.workType.name} en ${project.location}. ${cleanDescription}`,
-      url: `https://www.despejalax.es/proyectos/${project.id}`,
+      url: `https://www.despejalax.es/proyectos/${project.slug}`,
       images: [
         {
           url: project.portrait,
@@ -59,7 +59,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
     },
     alternates: {
-      canonical: `/proyectos/${project.id}`,
+      canonical: `/proyectos/${project.slug}`,
     },
   };
 }
@@ -67,11 +67,26 @@ export async function generateMetadata({
 export default async function Proyecto({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
-  const [project, { home }, footerProjects] = await Promise.all([
-    getProjectById(id),
+  const { slug } = await params;
+  let project = await getProjectBySlug(slug);
+
+  if (!project) {
+    const legacyProject = await getProjectById(slug);
+
+    if (legacyProject?.slug && legacyProject.slug !== slug) {
+      permanentRedirect(`/proyectos/${legacyProject.slug}`);
+    }
+
+    project = legacyProject;
+  }
+
+  if (!project) {
+    return notFound();
+  }
+
+  const [{ home }, footerProjects] = await Promise.all([
     getWebTexts(),
     getFooterProjects(),
   ]);
@@ -85,13 +100,9 @@ export default async function Proyecto({
     'contact-interior-title': home['contact-interior-title'],
   };
 
-  if (!project) {
-    return notFound();
-  }
-
   const breadcrumbItems = [
     { name: 'Proyectos', url: '/proyectos' },
-    { name: project.name, url: `/proyectos/${project.id}` }
+    { name: project.name, url: `/proyectos/${project.slug}` }
   ];
 
   return (
