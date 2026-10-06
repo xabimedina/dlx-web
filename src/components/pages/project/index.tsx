@@ -12,6 +12,13 @@ import { HomeContact } from '@/types/texts';
 import { trackProjectView } from '@/lib/analytics';
 import { useEffect } from 'react';
 
+const PROJECT_CREDITS: Record<string, string> = {
+  w0dsQwdUym5BMjDk84Sx:
+    'Casa Savoy, La Roqueta (Valencia). Proyecto y dirección de obra: Xabi Medina, en Kaleidoscope, 2021. Fotografías de María Gabriela Roncal (@imroncal) para Despeja la X, con autorización de los propietarios.',
+  x8MfJiHjyZAGndPLVtM1:
+    'Casa Alba, Mestalla (Valencia). Proyecto y dirección de obra: Xabi Medina, en Kaleidoscope, 2021. Fotografías de María Gabriela Roncal (@imroncal) para Despeja la X, con autorización de los propietarios.',
+};
+
 export default function ProjectPage({
   project,
   footerProjects,
@@ -65,6 +72,11 @@ export default function ProjectPage({
           </section>
 
           <ProjectGallery images={project.images} />
+          {PROJECT_CREDITS[project.id] && (
+            <p className='mx-auto max-w-3xl px-4 pt-12 pb-4 text-center text-xs leading-relaxed text-jet/60'>
+              {PROJECT_CREDITS[project.id]}
+            </p>
+          )}
         </main>
         <ContactSection texts={texts} />
       </div>
