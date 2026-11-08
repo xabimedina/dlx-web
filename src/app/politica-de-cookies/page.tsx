@@ -4,7 +4,7 @@ import { ConsentPreferencesButton } from '@/components/cookie-consent';
 
 export const metadata: Metadata = {
   title: 'Política de cookies',
-  description: 'Información sobre el uso de cookies analíticas en Despeja la X.',
+  description: 'Información sobre el uso de cookies analíticas y publicitarias en Despeja la X.',
   alternates: {
     canonical: '/politica-de-cookies',
   },
@@ -25,7 +25,7 @@ export default function PoliticaDeCookiesPage() {
           <h1 className="font-kanit text-4xl font-bold uppercase tracking-wide md:text-6xl">
             Política de cookies
           </h1>
-          <p className="text-sm text-jet/65">Última actualización: 18 de junio de 2026</p>
+          <p className="text-sm text-jet/65">Última actualización: 8 de noviembre de 2026</p>
         </header>
 
         <section className="space-y-3">
@@ -42,7 +42,9 @@ export default function PoliticaDeCookiesPage() {
           <p className="leading-relaxed text-jet/75">
             En Despeja la X usamos cookies técnicas necesarias para el
             funcionamiento básico de la web y, solo si das tu consentimiento,
-            cookies analíticas de Google Analytics.
+            cookies analíticas de Google Analytics. En nuestra calculadora
+            (calculadora.despejalax.es) usamos además, también solo con tu
+            consentimiento, cookies publicitarias de Meta.
           </p>
         </section>
 
@@ -71,6 +73,15 @@ export default function PoliticaDeCookiesPage() {
                   <td className="py-3 pr-4">Medición de uso, eventos y rendimiento</td>
                   <td className="py-3">Desactivada hasta consentimiento</td>
                 </tr>
+                <tr className="border-b border-jet/10">
+                  <td className="py-3 pr-4">Publicidad (solo en la calculadora)</td>
+                  <td className="py-3 pr-4">Meta Platforms (píxel de Meta)</td>
+                  <td className="py-3 pr-4">
+                    Medición de anuncios en Facebook e Instagram (cookies _fbp y
+                    _fbc, hasta 90 días)
+                  </td>
+                  <td className="py-3">Desactivada hasta consentimiento</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -81,10 +92,15 @@ export default function PoliticaDeCookiesPage() {
             Publicidad y personalización
           </h2>
           <p className="leading-relaxed text-jet/75">
-            En esta versión no activamos almacenamiento publicitario,
-            personalización de anuncios ni uso de datos para publicidad. Estos
-            consentimientos permanecen desactivados salvo que se informe y se
-            solicite consentimiento específico en el futuro.
+            Solo en la calculadora y solo si das tu consentimiento, usamos el
+            píxel de Meta para medir la eficacia de nuestros anuncios en Facebook
+            e Instagram. Meta recibe las páginas que visitas en la calculadora y,
+            si rellenas el formulario, puede recibir en formato hash los datos de
+            contacto que escribas (como tu nombre, email o teléfono) para asociar
+            tu visita con una cuenta de Meta. Meta puede tratar estos datos,
+            incluso fuera de la Unión Europea. El píxel no se usa en las páginas
+            de resultados. En Google no activamos
+            almacenamiento publicitario ni personalización de anuncios.
           </p>
         </section>
 
@@ -98,6 +114,11 @@ export default function PoliticaDeCookiesPage() {
             cualquier momento desde el botón de configuración.
           </p>
           <ConsentPreferencesButton />
+          <p className="leading-relaxed text-jet/75">
+            Este botón solo afecta a www.despejalax.es. La calculadora guarda tu
+            elección por separado: para cambiarla o retirarla, usa el botón
+            «Cookies» que aparece en todas sus páginas.
+          </p>
         </section>
 
         <section className="space-y-3">
