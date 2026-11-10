@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import type { ComponentProps, ComponentType } from 'react';
 
+import { ConsentPreferencesButton } from '@/components/cookie-consent';
+
 export interface FooterProject {
   name: string;
   href: string;
@@ -55,6 +57,15 @@ export function StickyFooter(props: StickyFooterProps) {
       <div style={{ height: footerHeight }} aria-hidden='true' />
       <section ref={footerRef} className='fixed bottom-0 z-[30] w-full'>
         <FooterWithProjects {...props} />
+        <div className='flex justify-center bg-jet pb-4'>
+          <ConsentPreferencesButton
+            variant='ghost'
+            size='sm'
+            className='h-7 px-3 text-xs font-medium text-smoke/70 hover:text-smoke'
+          >
+            Configurar cookies
+          </ConsentPreferencesButton>
+        </div>
       </section>
     </>
   );
