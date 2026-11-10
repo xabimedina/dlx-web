@@ -3,6 +3,7 @@
 import { sendGAEvent } from '@next/third-parties/google';
 
 import { CALCULATOR_URL, GA_MEASUREMENT_ID } from './constants';
+import { trackMetaCustomEvent, trackMetaEvent } from './meta-pixel';
 
 type ContactType = 'email' | 'phone' | 'whatsapp';
 type ProjectClickSource = 'homepage' | 'projects_page';
@@ -80,6 +81,7 @@ export function trackCalculatorClick(source: CalculatorSource) {
     source,
     destination_url: CALCULATOR_URL,
   });
+  trackMetaCustomEvent('CalculadoraClic', { source });
 }
 
 export function trackContactClick(contactType: ContactType, service?: string) {
@@ -88,4 +90,5 @@ export function trackContactClick(contactType: ContactType, service?: string) {
     contact_type: contactType,
     service,
   });
+  trackMetaEvent('Contact', { content_category: contactType });
 }
